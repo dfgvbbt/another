@@ -1,7 +1,3 @@
-Local idk = false
-Local control = false
-Local gamepass = false
-Local jack = false
 
 if idk == true then
   loadstring(game:HttpGet("?????"))();
