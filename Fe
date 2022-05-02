@@ -1,9 +1,8 @@
---[[
 Local admin = false
 Local control = false
 Local gamepass = false
 Local jack = false
-]]
+
 if admin == true then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
 end
