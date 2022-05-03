@@ -1,8 +1,10 @@
+--[[
 local admin = false
 local control = false
 local gamepass = false
 local jack = false
 local chat = false
+]]
 
 if chat == true then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbt/another/main/Chat"))()
