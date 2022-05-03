@@ -1,7 +1,12 @@
-Local admin = false
-Local control = false
-Local gamepass = false
-Local jack = false
+local admin = false
+local control = false
+local gamepass = false
+local jack = false
+local chat = false
+
+if chat == true then
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbt/another/main/Chat"))()
+end
 
 if admin == true then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
