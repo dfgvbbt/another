@@ -6,17 +6,16 @@ local jack = false
 local chat = false
 local fling = false
 ]]
-
 if chat then
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbt/another/main/Chat"))()
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbt/another/main/Chat"))()
 end
 
 if admin then
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
 end
 
 if control then
-  loadstring(game:HttpGet("https://controlc.com/e631b844"))()
+ loadstring(game:HttpGet("https://controlc.com/e631b844"))()
 end
 
 if gamepass then
@@ -24,9 +23,8 @@ if gamepass then
 end
 
 if jack then
-  loadstring(game:HttpGet("https://thedragonslayer2.github.io"))()
+ loadstring(game:HttpGet("https://thedragonslayer2.github.io"))()
 
 if fling then
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua"))()
- end
+ loadstring(game:HttpGet("https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua"))()
 end
