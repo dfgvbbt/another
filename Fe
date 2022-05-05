@@ -1,32 +1,93 @@
---[[
-local admin = false
-local control = false
-local gamepass = false
-local jack = false
-local chat = false
-local fling = false
-]]
 
-if chat then
- loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbt/another/main/Chat"))()
-end
 
-if admin then
- loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
-end
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 
-if control then
- loadstring(game:HttpGet("https://controlc.com/e631b844"))()
-end
+local w = library:CreateWindow("dfgvbbt list") -- Creates the window
 
-if gamepass then
- loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbt/another/main/GamePass"))()
-end
+local b = w:CreateFolder("Scripts") -- Creates the folder(U will put here your buttons,etc)
+local c = w:CreateFolder("Supports") -- Creates the folder(U will put here your buttons,etc)
 
-if jack then
- loadstring(game:HttpGet("https://thedragonslayer2.github.io"))()
-end
+c:Label("Local",{
+    TextSize = 25; -- Self Explaining
+    TextColor = Color3.fromRGB(240,255,240); -- Self Explaining
+    BgColor = Color3.fromRGB(69,69,69); -- Self Explaining
+    
+}) 
 
-if fling then
- loadstring(game:HttpGet("https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua"))()
-end
+b:Label("SCRIPT",{
+    TextSize = 25; -- Self Explaining
+    TextColor = Color3.fromRGB(240,255,240); -- Self Explaining
+    BgColor = Color3.fromRGB(69,69,69); -- Self Explaining
+    
+}) 
+
+b:Button("Fates admin",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+end)
+
+b:Button("Fighter",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua"))();
+end)
+
+b:Button("GamePass",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbtdfgvbbt/another/main/GamePass"))()
+end)
+
+b:Button("Esp",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbtdfgvbbt/another/main/esp"))()
+end)
+
+b:Toggle("Toggle",function(bool)
+    idk = bool
+    print(bool)
+end)
+
+
+
+b:Dropdown("Dropdown",{"A","B","C"},true,function(mob) --true/false, replaces the current title "Dropdown" with the option that t
+    print(mob)
+end)
+
+
+b:Bind("Bind",Enum.KeyCode.C,function() --Default bind
+    print("Yes")
+end)
+
+b:ColorPicker("ColorPicker",Color3.fromRGB(255,0,0),function(color) --Default color
+    print(color)
+end)
+
+b:Box("Box","number",function(value) -- "number" or "string"
+    print(value)
+end)
+
+b:DestroyGui()
+
+-- C
+
+
+
+c:Slider("Speed",{
+    min = 16; -- min value of the slider
+    max = 500; -- max value of the slider
+    precise = true; -- max 2 decimals
+},function(value)
+    game.Workspace.dfgvbbt.Humanoid.WalkSpeed = (value)
+end)
+
+c:Slider("Jump power",{
+    min = 16; -- min value of the slider
+    max = 500; -- max value of the slider
+    precise = true; -- max 2 decimals
+},function(value)
+    game.Workspace.dfgvbbt.Humanoid.JumpPower = (value)
+end)
+
+c:Slider("Gravity",{
+    min = -20; -- min value of the slider
+    max = 1000; -- max value of the slider
+},function(value)
+    game.Workspace.Gravity = (value)
+end)
+
+
