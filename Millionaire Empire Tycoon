@@ -13,6 +13,13 @@ spawn(function()
         wait(0)
         if limited < 1 then
              print ("Maxed!, now lets collect your money from cash collector!")
+             print ("executing gui...")
         end
     end
 end)
+wait (0.3)
+_G.RedGUI = false
+_G.Theme = "Dark" -- Must disable or remove _G.RedGUI to use
+--Themes: Light, Dark, Mocha, Aqua and Jester
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/MillionaireEmpireTycoon.lua"))()
