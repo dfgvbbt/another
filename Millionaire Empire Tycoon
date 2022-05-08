@@ -1,0 +1,12 @@
+getgenv().Money = true
+spawn(function()
+  while Money == true do
+    if not Money then break end
+    local args = {
+        [1] = 1234567890
+    }
+    
+    game:GetService("ReplicatedStorage").RespawnService:FireServer(unpack(args))
+    wait()
+   end
+end)
