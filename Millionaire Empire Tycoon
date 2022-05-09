@@ -1,25 +1,48 @@
-local limited = (9)
-getgenv().Money = true
-spawn(function()
-    while Money == true do
-        if not Money or limited < 1 then break end
-        local args = {
-            [1] = 1000000000000000000,
-        }
+local title = ("Choose!")
+local text = ("Press Money (Check in f9) or Gui to continue!")
+local id = (02932039)
+local second = (10)
+local answer1 = ("Money")
+local answer2 = ("Gui")
+--
 
-        game:GetService("ReplicatedStorage").RespawnService:FireServer(unpack(args))
-        limited = limited - 1
-        print(limited.." charges left")
-        wait(0)
-        if limited < 1 then
-             print ("Maxed!, now lets collect your money from cash collector!")
-             print ("executing gui...")
+local function callback(Text)
+ if Text == answer1 then
+    local limited = (9)
+    getgenv().Money = true
+    spawn(function()
+        while Money == true do
+            if not Money or limited < 1 then break end
+            local args = {
+                [1] = 1000000000000000000,
+            }
+
+            game:GetService("ReplicatedStorage").RespawnService:FireServer(unpack(args))
+            limited = limited - 1
+            print(limited.." charges left")
+            wait(0)
+            if limited < 1 then
+                 print ("Maxed!, now lets collect your money from cash collector!")
+            end
         end
-    end
-end)
-wait (0.3)
-_G.RedGUI = false
-_G.Theme = "Dark" -- Must disable or remove _G.RedGUI to use
---Themes: Light, Dark, Mocha, Aqua and Jester
+    end)
+elseif Text == answer2 then
+    _G.RedGUI = false
+    _G.Theme = "Dark" -- Must disable or remove _G.RedGUI to use
+    --Themes: Light, Dark, Mocha, Aqua and Jester
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/MillionaireEmpireTycoon.lua"))()
+ end
+end 
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/MillionaireEmpireTycoon.lua"))()
+local NotificationBindable = Instance.new("BindableFunction")
+NotificationBindable.OnInvoke = callback
+--
+game.StarterGui:SetCore("SendNotification",  {
+ Title = (title);
+ Text = (text);
+ Icon = (id);
+ Duration = (second);
+ Button1 = (answer1);
+ Button2 = (answer2);
+ Callback = NotificationBindable;
+})
