@@ -25,6 +25,10 @@ b:Button("Fates admin",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
 end)
 
+b:Button("Fun Admin",function()
+    loadstring(game:HttpGet("https://github.com/dfgvbbt/another/raw/main/Fun%20admin"))()
+end
+
 b:Button("Fighter",function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua"))();
 end)
