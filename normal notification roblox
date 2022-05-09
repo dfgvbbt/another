@@ -1,0 +1,12 @@
+local NotificationBindable = Instance.new("BindableFunction")
+NotificationBindable.OnInvoke = callback
+--
+game.StarterGui:SetCore("SendNotification",  {
+ Title = (title);
+ Text = (text);
+ Icon = (id);
+ Duration = (second);
+ Button1 = (answer1);
+ Button2 = (answer2);
+ Callback = NotificationBindable;
+})
