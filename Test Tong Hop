@@ -1,0 +1,156 @@
+local PlaceId = game.PlaceId
+--Game id list
+if PlaceId == 6284583030 then 
+	Pet_X = true
+elseif PlaceId == 4520749081 or PlaceId == 6381829480 or PlaceId == 5931540094 then 
+	King_Legacy = true
+elseif PlaceId == 2753915549 or PlaceId == 4442272183 or PlaceId == 7449423635 then 
+	Blox_Fruit = true
+elseif PlaceId == 537413528 then 
+	Babft = true
+elseif PlaceId == 1458767429 then 
+	ABA = true
+elseif PlaceId == 5670292785 then 
+	Undead_Defense_Tycoon = true
+elseif PlaceId == 7305309231 then 
+	TaxiBoss = true
+elseif PlaceId == 3851622790 or PlaceId == 4620170611 then 
+	Break_in = true
+elseif PlaceId == 654732683 then 
+	Car_Crusher2 = true
+elseif PlaceId == 8396586868 then
+	A_One_Piece_Game = true
+elseif PlaceId == 189707 then
+	Natural_Disaster_Survival = true
+elseif PlaceId == 5732973455 then
+	HOURS = true
+elseif PlaceId == 7180042682 then
+	Military_Tycoon = true
+elseif PlaceId == 5346891762 then
+	Bridge_Worm = true
+elseif PlaceId == 6677985923 then
+	Millionaire_Empire_Tycoon = true
+elseif PlaceId == 3056526277 then
+	Build_and_Survive = true
+elseif PlaceId == 4325400580 then
+	Army_Tycoon = true
+elseif PlaceId == 4390380541 then
+	Rumble_Quest = true
+elseif PlaceId == 9203864304 or PlaceId == 9312552871 then
+	raise_a_floppa = true
+elseif PlaceId == 9281034297 then
+	Goal_Kick_Simulator = true
+elseif PlaceId == 8523408215 then
+	Alo_Sanctuary = true
+elseif PlaceId == 3964975083 then
+	Build_to_survive = true
+elseif PlaceId == 914010731 then
+	Ro_Ghoul = true
+else
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+	warn("BRUH,THIS GAME NOT SUPPORTED")
+	print("BRUH,THIS GAME NOT SUPPORTED")
+	print(game.PlaceId .. " is place id and ".. game.Players.LocalPlayer.Name .." so lovely and cute :3")
+end
+--------------------------------------------------------------------------------------------------------------------------
+--Script list
+
+if Pet_X then
+	loadstring(game:HttpGet"https://raw.githubusercontent.com/KuppaHX/MUKUROHUB/main/psxMukuro.lua")()
+	
+	
+elseif King_Legacy then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/xDepressionx/Free-Script/main/KingLegacy.lua"))()
+	
+	
+elseif Blox_Fruit then
+	loadstring(game:HttpGet"https://raw.githubusercontent.com/xQuartyx/DonateMe/main/ScriptLoader")()
+	
+	
+elseif Babft then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/GOJOsatoru1122/SWPRDHUBBUILDABOAT/main/README.md"))()	
+	
+	
+elseif ABA then
+	loadstring(game:HttpGet"https://raw.githubusercontent.com/xDepressionx/Free-Script/main/Anime-Battle-Arena.lua")()
+	
+	
+elseif Undead_Defense_Tycoon then
+	loadstring(game:HttpGet"https://raw.githubusercontent.com/thedragonslayer2/MrJack-Game-List/main/Undead%20Defense%20Tycoon%20-%205670292785.lua")()
+	
+	
+elseif TaxiBoss then
+	loadstring(game:HttpGet(('https://dosage.wtf/files/loader.lua'),true))()
+	
+	
+elseif Break_in then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/RubyBoo4life/break-in-v1/main/.gitignore"))();
+	
+	
+elseif Car_Crusher2 then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/saucekid/scripts/main/CarCrushers.lua"))()
+	
+	
+elseif A_One_Piece_Game then
+	loadstring(game:HttpGet("https://rawscripts.net/raw/loader_1038"))()
+	
+	
+elseif Natural_Disaster_Survival then
+	loadstring(game:HttpGet(("https://raw.githubusercontent.com/Yarik312/DarkWare/main/MainLoader"), true))()
+	
+	
+elseif HOURS then
+	loadstring(game:HttpGet("https://pastebin.com/raw/jDqD8h8J"))()
+	
+	
+elseif Military_Tycoon then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbt/another/main/GamePass"))()
+	
+	
+elseif Bridge_Worm then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbt/another/main/Bridge%20worm"))()
+	
+	
+elseif Millionaire_Empire_Tycoon then
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbt/another/main/Millionaire%20Empire%20Tycoon"))()
+	
+	
+elseif Build_and_Survive then
+	loadstring(game:HttpGet("https://pastebin.com/raw/kkgZv9Sp"))()
+	
+	
+elseif Army_Tycoon then
+	loadstring(game:HttpGet("https://pastebin.com/raw/ruC0HALL"))()
+	
+	
+elseif Rumble_Quest then
+	loadstring(game:HttpGet("https://pastebin.com/raw/Q5GNs6m9"))()
+	
+	
+elseif raise_a_floppa then
+	_G.RedGUI = false
+	_G.Theme = "Dark" -- Must disable or remove _G.RedGUI to use
+	--Themes: Light, Dark, Mocha, Aqua and Jester
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/raiseafloppa.lua"))()
+	
+	
+elseif Goal_Kick_Simulator then
+	loadstring(game:HttpGet"https://thedragonslayer2.github.io")()
+	
+	
+elseif Alo_Sanctuary then
+	loadstring(game:HttpGet"https://pastebin.com/raw/BHYs12fD")()
+	
+	
+elseif Build_to_survive then
+	loadstring(game:HttpGet"https://github.com/dfgvbbt/another/raw/main/Fun%20admin")()
+	
+	
+elseif Ro_Ghoul then
+	loadstring(game:HttpGetAsync(("https://gist.githubusercontent.com/z4gs/5b71b8d430eb3582f895dfcfafc1fbfc/raw/db85b2a57a5368a789ec0772cad6233a99535823/Ro-Ghoul")))()
+	
+	
+	
+	
+end
+wait() print("The list script work now waitting to load for your game :3") 
