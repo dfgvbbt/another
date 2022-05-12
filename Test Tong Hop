@@ -160,4 +160,4 @@ elseif Sonic_Speed_Simulator then
 	
 end
 wait() print("The list script work now waitting to load for your game :3") 
-if Script_Have_Link_Key then setclipboard (Key) wait(0.2) print (Key.. " is key link :3") end
+if Script_Have_Link_Key then setclipboard (Key) wait(0.2) print (Key.. " is key link and was copyed :3") end
