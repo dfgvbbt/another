@@ -154,6 +154,7 @@ elseif Ro_Ghoul then
 	
 elseif Sonic_Speed_Simulator then
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/destylol/masterhubv311/itachi/Main.lua"))()
+	print("(Bad script sir)"
 
 	
 end
