@@ -68,7 +68,7 @@ elseif Blox_Fruit then
 	
 	
 elseif Babft then
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/GOJOsatoru1122/SWPRDHUBBUILDABOAT/main/README.md"))()	
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/StenDirt/Trash-Game/main/Script.lua"))()
 	
 	
 elseif ABA then
