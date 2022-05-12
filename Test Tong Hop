@@ -153,9 +153,11 @@ elseif Ro_Ghoul then
 	
 	
 elseif Sonic_Speed_Simulator then
+	Script_Have_Link_Key = true
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/destylol/masterhubv311/itachi/Main.lua"))()
-	print("(Bad script sir)"
+	Key = ("https://panda-project.tk/")
 
 	
 end
 wait() print("The list script work now waitting to load for your game :3") 
+if Script_Have_Link_Key then setclipboard (Key) wait(0.2) print (Key .." is key link") end
