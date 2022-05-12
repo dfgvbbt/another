@@ -1,0 +1,26 @@
+local title = ("Key") local text = ("The link to get key") local id = () local second (10) local answer1 = ("Copy") local answer2 = ("Print")
+local function callback(Text)
+ if Text == answer1 then
+  setclipboard("https://panda-project.tk")
+  wait(0,5)
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/destylol/masterhubv311/itachi/Main.lua"))()
+ end
+elseif Text == answer2 then
+  print("https://panda-project.tk")
+  wait(1)
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/destylol/masterhubv311/itachi/Main.lua"))()
+ end
+end
+
+---------------------------------------------------------------------------
+local NotificationBindable = Instance.new("BindableFunction")
+NotificationBindable.OnInvoke = callback
+game.StarterGui:SetCore("SendNotification",  {
+ Title = (title);
+ Text = (text);
+ Icon = (id);
+ Duration = (second);
+ Button1 = (answer1);
+ Button2 = (answer2);
+ Callback = NotificationBindable;
+})
