@@ -37,7 +37,9 @@ b:Button("GamePass",function()
 end)
 
 b:Button("Esp",function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbtdfgvbbt/another/main/esp"))()
+    local setkey = "b" -- change to something like "g" or whatever to change it
+    local waitduration = 0.5 -- the amount of time before the ESP updates (removes all current ESP objects and makes new ones)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbt/another/main/esp"))()
 end)
 
 b:Toggle("Toggle",function(bool)
