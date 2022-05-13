@@ -33,7 +33,7 @@ b:Button("Fighter",function()
 end)
 
 b:Button("GamePass",function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbtdfgvbbt/another/main/GamePass"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/dfgvbbt/another/main/GamePass"))()
 end)
 
 b:Button("Esp",function()
