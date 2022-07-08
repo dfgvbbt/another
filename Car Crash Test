@@ -1,9 +1,10 @@
 _G.CrashSever = {
-    Start = true;
-    Spam = false;
-    NumberCar = 33 ;
-    DeleteAll = true
+    Start = true; -- phải bật cái này nếu muốn spawn xe hoặc làm lag server
+    Spam = false; -- spam cho sever lag :)
+    NumberCar = 33 ; --Số thứ tự của xe trong game và xe gì cũng được
+    DeleteAll = false -- xóa hết xe (chỉ khi có 2 xe trở lên)
 }
+local Cooldown = 0
 spawn(function()
     if (_G.CrashSever.Start == true) and tonumber(_G.CrashSever.NumberCar) then
         if not _G.CrashSever.Spam then
@@ -11,7 +12,9 @@ spawn(function()
         elseif _G.CrashSever.Spam == true then
             while wait(0.0001) do
                if not  _G.CrashSever.Spam == true then break end
+               if Cooldown == 20 then wait(2) Cooldown = 0 end
                game.ReplicatedStorage.SpawnCar:FireServer("carcrash".._G.CrashSever["NumberCar"])
+               Cooldown += 1
             end
         end
     end
@@ -19,8 +22,8 @@ end)
 spawn(function()
     while wait() do
         if _G.CrashSever["DeleteAll"] == false then break end
-        for i,v in pairs (game.Workspace.Vehicles) do
-            v:Destroy()
-        end
+        for i,v in pairs (game.Players:GetPlayers()) do
+            game.Workspace.Vehicles:FindFirstChild(v.name.."sCar"):Destroy()
+        end        
     end
 end)
