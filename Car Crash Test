@@ -1,0 +1,26 @@
+_G.CrashSever = {
+    Start = true;
+    Spam = false;
+    NumberCar = 33 ;
+    DeleteAll = true
+}
+spawn(function()
+    if (_G.CrashSever.Start == true) and tonumber(_G.CrashSever.NumberCar) then
+        if not _G.CrashSever.Spam then
+            game.ReplicatedStorage.SpawnCar:FireServer("carcrash".._G.CrashSever["NumberCar"])
+        elseif _G.CrashSever.Spam == true then
+            while wait(0.0001) do
+               if not  _G.CrashSever.Spam == true then break end
+               game.ReplicatedStorage.SpawnCar:FireServer("carcrash".._G.CrashSever["NumberCar"])
+            end
+        end
+    end
+end)
+spawn(function()
+    while wait() do
+        if _G.CrashSever["DeleteAll"] == false then break end
+        for i,v in pairs (game.Workspace.Vehicles) do
+            v:Destroy()
+        end
+    end
+end)
