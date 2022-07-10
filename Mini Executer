@@ -117,6 +117,7 @@ BoxLua.Parent = Small
 BoxLua.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 BoxLua.BackgroundTransparency = 0.800
 BoxLua.Position = UDim2.new(0.0111111114, 0, 0.216666669, 0)
+BoxLua.ClearTextOnFocus = false
 BoxLua.Size = UDim2.new(0, 176, 0, 33)
 BoxLua.Visible = false
 BoxLua.Font = Enum.Font.SourceSans
