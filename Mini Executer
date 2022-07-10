@@ -1,0 +1,276 @@
+-- Gui to Lua
+-- Version: 3.2
+-- Instances:
+local UIS = game:GetService("UserInputService")
+local ScreenGui = Instance.new("ScreenGui")
+local Small = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Clear = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local Execute = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local ModeLua = Instance.new("TextButton")
+local ModeUrl = Instance.new("TextButton")
+local Destroy = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local Setting = Instance.new("ImageButton")
+local BoxLua = Instance.new("TextBox")
+local UICorner_5 = Instance.new("UICorner")
+local BoxUrl = Instance.new("TextBox")
+local UICorner_6 = Instance.new("UICorner")
+
+
+
+--Properties:
+
+ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+
+Small.Name = "Small"
+Small.Parent = ScreenGui
+Small.Active = true
+Small.BackgroundColor3 = Color3.fromRGB(120, 136, 133)
+Small.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Small.ClipsDescendants = true
+Small.Position = UDim2.new(0, 0,0.925, 0) -- 0.403954804, 0, 0.481929779, 0
+Small.Size = UDim2.new(0, 180, 0, 60)
+UICorner.CornerRadius = UDim.new(0, 9)
+UICorner.Parent = Small
+Clear.Name = "Clear"
+Clear.Parent = Small
+Clear.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Clear.BackgroundTransparency = 0.500
+Clear.Position = UDim2.new(0.111111112, 0, 0.783333361, 0)
+Clear.Size = UDim2.new(0, 60, 0, 13)
+Clear.Font = Enum.Font.Highway
+Clear.Text = "Clear"
+Clear.TextColor3 = Color3.fromRGB(255, 0, 0)
+Clear.TextSize = 14.000
+
+UICorner_2.CornerRadius = UDim.new(0, 9)
+UICorner_2.Parent = Clear
+
+Execute.Name = "Execute"
+Execute.Parent = Small
+Execute.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Execute.BackgroundTransparency = 0.500
+Execute.Position = UDim2.new(0.550111234, 0, 0.783333361, 0)
+Execute.Size = UDim2.new(0, 60, 0, 13)
+Execute.Font = Enum.Font.SourceSans
+Execute.Text = "Execute"
+Execute.TextColor3 = Color3.fromRGB(255, 255, 255)
+Execute.TextSize = 14.000
+
+
+
+UICorner_3.CornerRadius = UDim.new(0, 9)
+UICorner_3.Parent = Execute
+
+ModeLua.Name = "Mode-Lua"
+ModeLua.Parent = Small
+ModeLua.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ModeLua.BackgroundTransparency = 0.80
+ModeLua.Position = UDim2.new(0.0222222228, 0, 0.0333333351, 0)
+ModeLua.Size = UDim2.new(0, 50, 0, 10)
+ModeLua.Font = Enum.Font.SourceSans
+ModeLua.Text = "Lua"
+ModeLua.TextColor3 = Color3.fromRGB(0, 0, 0)
+ModeLua.TextSize = 14.000
+
+ModeUrl.Name = "Mode-Url"
+ModeUrl.Parent = Small
+ModeUrl.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ModeUrl.BackgroundTransparency = 0.500
+ModeUrl.Position = UDim2.new(0.312000006, 0, 0.0329999998, 0)
+ModeUrl.Size = UDim2.new(0, 50, 0, 10)
+ModeUrl.Font = Enum.Font.SourceSans
+ModeUrl.Text = "Url"
+ModeUrl.TextColor3 = Color3.fromRGB(0, 0, 0)
+ModeUrl.TextSize = 14.000
+
+Destroy.Name = "Destroy"
+Destroy.Parent = Small
+Destroy.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Destroy.BackgroundTransparency = 1.000
+Destroy.Position = UDim2.new(0.922222197, 0, 0, 0)
+Destroy.Size = UDim2.new(0, 12, 0, 12)
+Destroy.Font = Enum.Font.SourceSans
+Destroy.Text = "x"
+Destroy.TextColor3 = Color3.fromRGB(255, 0, 0)
+Destroy.TextSize = 14.000
+
+UICorner_4.CornerRadius = UDim.new(0, 9)
+UICorner_4.Parent = Destroy
+
+Setting.Name = "Setting"
+Setting.Parent = Small
+Setting.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Setting.BackgroundTransparency = 1.000
+Setting.Position = UDim2.new(0.861999989, 0, 0, 0)
+Setting.Size = UDim2.new(0, 12, 0, 12)
+Setting.Image = "http://www.roblox.com/asset/?id=3599164218"
+
+BoxLua.Name = "Box|Lua"
+BoxLua.Parent = Small
+BoxLua.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+BoxLua.BackgroundTransparency = 0.800
+BoxLua.Position = UDim2.new(0.0111111114, 0, 0.216666669, 0)
+BoxLua.Size = UDim2.new(0, 176, 0, 33)
+BoxLua.Visible = false
+BoxLua.Font = Enum.Font.SourceSans
+BoxLua.Text = ""
+BoxLua.TextColor3 = Color3.fromRGB(0, 0, 0)
+BoxLua.TextSize = 14.000
+
+UICorner_5.Parent = BoxLua
+
+BoxUrl.Name = "Box|Url"
+BoxUrl.Parent = Small
+BoxUrl.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+BoxUrl.BackgroundTransparency = 0.800
+BoxUrl.Position = UDim2.new(0.0111111114, 0, 0.216666669, 0)
+BoxUrl.Size = UDim2.new(0, 176, 0, 33)
+BoxUrl.ClearTextOnFocus = false
+BoxUrl.Font = Enum.Font.SourceSans
+BoxUrl.PlaceholderText = "https://pastepin.com/?"
+BoxUrl.Text = ""
+BoxUrl.TextColor3 = Color3.fromRGB(38, 255, 0)
+BoxUrl.TextSize = 14.000
+
+UICorner_6.Parent = BoxUrl
+
+local Settings = {
+	ModeUrlTrans = ModeUrl.Transparency,
+	ModeLuaTrans = ModeLua.Transparency,
+}
+--Script :)
+local function Mode_Lua()
+	BoxUrl.Visible = false
+	ModeUrl.BackgroundTransparency = 0.8
+	Settings.ModeUrlTrans = ModeUrl.Transparency
+	BoxLua.Visible = true
+	ModeLua.BackgroundTransparency = 0.5
+	Settings.ModeLuaTrans = ModeLua.Transparency
+end
+local function Mode_Url()
+	BoxLua.Visible = false
+	ModeLua.BackgroundTransparency = 0.8
+	Settings.ModeLuaTrans = ModeLua.Transparency
+	BoxUrl.Visible = true
+	ModeUrl.BackgroundTransparency = 0.5
+	Settings.ModeUrlTrans = ModeUrl.Transparency	
+end
+
+local function HideGui()
+	for i,v in pairs(Small:GetChildren()) do
+		if not v:IsA("UICorner") then
+			if v:IsA("ImageButton") then
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{ImageTransparency = 1}):Play()
+			elseif v:IsA("TextBox") then
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
+			end
+			if v.Name == Destroy.Name then
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play(
+			elseif v.Name == ModeUrl.Name then
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+			elseif v.Name == ModeLua.Name then
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+			end
+			local tween = game:GetService("TweenService"):Create(v and Small,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency = 1})
+			tween:Play()
+		end
+	end
+end
+
+local function ShowGui()
+	for i,v in pairs(Small:GetChildren()) do
+		if not v:IsA("UICorner") then
+			if v:IsA("ImageButton") then
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{ImageTransparency = 0}):Play()
+			elseif v:IsA("TextBox") then
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 0.8}):Play()
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
+			end
+			if v.Name == Destroy.Name then
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
+			elseif v.Name == ModeUrl.Name then
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = Settings.ModeUrlTrans}):Play()
+			elseif v.Name == ModeLua.Name then
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = Settings.ModeLuaTrans}):Play()
+			end
+			local tween = game:GetService("TweenService"):Create(v and Small,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency = 0})
+			tween:Play()
+		end
+	end
+end
+
+Destroy.MouseButton1Click:Connect(function()
+	for i,v,main in pairs(Small:GetChildren()) do
+		if not v:IsA("UICorner") then
+			if v:IsA("TextBox") then
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
+			end
+			local tweentodestroy = game:GetService("TweenService"):Create(v and Small,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency = 1})
+			tweentodestroy:Play()
+			tweentodestroy.Completed:Connect(function()
+				v:Destroy()
+			end)
+		end
+	end
+	wait(1)
+	Small:Destroy()
+	script:Destroy()
+end)
+
+Clear.MouseButton1Up:Connect(function()
+	if BoxUrl.Text ~= "" and BoxUrl.Visible == true then
+		spawn(function()
+			BoxUrl:CaptureFocus()
+			BoxUrl.Text = ""
+		end)
+	end
+	if BoxLua.Text ~= "" and BoxLua.Visible == true then
+		spawn(function()
+			BoxLua:CaptureFocus()
+			BoxLua.Text = ""
+		end)
+	end
+end)
+
+Execute.MouseButton1Up:Connect(function()
+	if BoxUrl.Text ~= "" and BoxUrl.Visible == true then
+		loadstring(game:HttpGet(BoxUrl.Text))
+	end
+  
+	if BoxLua.Text ~= "" and BoxLua.Visible == true then
+		--Exploit loadstring(BoxLua.Text)
+		loadstring(BoxLua.Text)
+	end
+end)
+
+Setting.MouseButton1Up:Connect(function()
+	game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", { Text = ("{Script} Coming Soon :)"), Color = Color3.new(0.0901961, 0.756863, 1), TextSize = 18, })
+end)
+
+ModeLua.MouseButton1Up:Connect(function()
+	Mode_Lua()
+end)
+
+ModeUrl.MouseButton1Up:Connect(function()
+	Mode_Url()
+end)
+
+game:GetService("UserInputService").InputBegan:Connect(function(input,gameprocess)
+	if gameprocess then return end
+	if (input.KeyCode == Enum.KeyCode.E and UIS:IsKeyDown(Enum.KeyCode.LeftControl)) then
+		if Small.Transparency == 0 then
+			HideGui()
+		else
+			ShowGui()
+		end
+	end
+end)
