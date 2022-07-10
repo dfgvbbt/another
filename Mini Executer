@@ -23,7 +23,7 @@ local UICorner_6 = Instance.new("UICorner")
 
 --Properties:
 
-ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+ScreenGui.Parent = game.CoreGui
 
 Small.Name = "Small"
 Small.Parent = ScreenGui
@@ -31,10 +31,13 @@ Small.Active = true
 Small.BackgroundColor3 = Color3.fromRGB(120, 136, 133)
 Small.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Small.ClipsDescendants = true
-Small.Position = UDim2.new(0, 0,0.925, 0) -- 0.403954804, 0, 0.481929779, 0
+Small.Position = UDim2.new(0, 0,0, 600) -- 0.403954804, 0, 0.481929779, 0
 Small.Size = UDim2.new(0, 180, 0, 60)
+Small.Draggable = true
+
 UICorner.CornerRadius = UDim.new(0, 9)
 UICorner.Parent = Small
+
 Clear.Name = "Clear"
 Clear.Parent = Small
 Clear.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -170,13 +173,14 @@ local function HideGui()
 				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
 			end
 			if v.Name == Destroy.Name then
-				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play(
-			elseif v.Name == ModeUrl.Name then
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
+			elseif v.Name == ModeUrl.Name or v.Name == Execute.Name or v.Name == Clear.Name then
 				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
 				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
 			elseif v.Name == ModeLua.Name then
 				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
 				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+
 			end
 			local tween = game:GetService("TweenService"):Create(v and Small,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency = 1})
 			tween:Play()
@@ -201,6 +205,9 @@ local function ShowGui()
 			elseif v.Name == ModeLua.Name then
 				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
 				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = Settings.ModeLuaTrans}):Play()
+            elseif  v.Name == Execute.Name or v.Name == Clear.Name then
+                game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 0.5}):Play()
 			end
 			local tween = game:GetService("TweenService"):Create(v and Small,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency = 0})
 			tween:Play()
@@ -223,6 +230,7 @@ Destroy.MouseButton1Click:Connect(function()
 	end
 	wait(1)
 	Small:Destroy()
+    ScreenGui:Destroy()
 	script:Destroy()
 end)
 
@@ -243,12 +251,12 @@ end)
 
 Execute.MouseButton1Up:Connect(function()
 	if BoxUrl.Text ~= "" and BoxUrl.Visible == true then
-		loadstring(game:HttpGet(BoxUrl.Text))
+		loadstring(game:HttpGet(BoxUrl.Text))()
 	end
   
 	if BoxLua.Text ~= "" and BoxLua.Visible == true then
 		--Exploit loadstring(BoxLua.Text)
-		loadstring(BoxLua.Text)
+		loadstring(BoxLua.Text)()
 	end
 end)
 
