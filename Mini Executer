@@ -282,3 +282,5 @@ game:GetService("UserInputService").InputBegan:Connect(function(input,gameproces
 		end
 	end
 end)
+
+game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", { Text = ("{Script} Ctrl + E To Hide Gui!"), Color = Color3.new(0.298039, 0.207843, 0.65098), TextSize = 18, })
