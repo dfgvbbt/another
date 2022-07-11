@@ -353,6 +353,8 @@ Execute.MouseButton1Up:Connect(function()
 		print(IsSuccess)
 		if IsSuccess == false then
 			ShowNotifi(Reasson,8)
+		elseif IsSuccess == true then
+			loadstring(game:HttpGet(BoxUrl.Text))
 		end
 		
 	end
@@ -363,6 +365,8 @@ Execute.MouseButton1Up:Connect(function()
 		end)
 		if IsSuccess == false then
 			ShowNotifi("Error Lua: "..Reasson,8)
+		elseif IsSuccess == true then
+			loadstring(BoxLua.Text)
 		end
 	end
 end)
