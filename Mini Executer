@@ -303,7 +303,7 @@ local function ShowGui()
 				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = Settings.ModeLuaTrans}):Play()
 			elseif v.Name == Execute.Name or v.Name == Clear.Name then
 				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
-				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 0}):Play()
+				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 0.5}):Play()
 			end
 			local tween = game:GetService("TweenService"):Create(v and Small,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency = 0})
 			tween:Play()
