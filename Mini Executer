@@ -254,7 +254,7 @@ local function ShowNotifi(texts,time_to_hide)
 		Services.TweenService:Create(UIStroke,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency = 0}):Play()
 		Services.TweenService:Create(Notification_Gui,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
 		Services.TweenService:Create(Notification_Gui,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 0.4}):Play()
-		Effect_Text(Notification_Gui,texts,time_to_hide/100)
+		Effect_Text(Notification_Gui,texts,time_to_hide/10000)
 		
 	end
 end
