@@ -354,7 +354,7 @@ Execute.MouseButton1Up:Connect(function()
 		end) 
 		print(IsSuccess)
 		if IsSuccess == false then
-			ShowNotifi(Reasson,8)
+			ShowNotifi('Error "'..Reasson..'"',8)
 		end
 	end
 	if BoxLua.Text ~= "" and BoxLua.Visible == true then
@@ -362,7 +362,7 @@ Execute.MouseButton1Up:Connect(function()
 			loadstring(BoxLua.Text)()
 		end)
 		if IsSuccess == false then
-			ShowNotifi("Error Lua: "..Reasson,8)
+			ShowNotifi('Error "'..Reasson,8..'"')
 		end
 	end
 end)
