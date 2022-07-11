@@ -346,7 +346,7 @@ end)
 
 Execute.MouseButton1Up:Connect(function()
 	if BoxUrl.Text ~= "" and BoxUrl.Visible == true then
-		--Exploit loadstring(game:HttpGet(BoxUrl.Text))
+		loadstring(game:HttpGet(BoxUrl.Text))
 		local IsSuccess,Reasson = pcall(function()
 			loadstring(game:HttpGet(BoxUrl.Text))
 		end) 
@@ -355,12 +355,12 @@ Execute.MouseButton1Up:Connect(function()
 			ShowNotifi(Reasson,8)
 		end
 		if IsSuccess == true then
-			loadstring(game:HttpGet(BoxUrl.Text))
+			print("Nice")
 		end
 		
 	end
 	if BoxLua.Text ~= "" and BoxLua.Visible == true then
-		--Exploit loadstring(BoxLua.Text)
+		loadstring(BoxLua.Text)
 		local IsSuccess,Reasson = pcall(function()
 			loadstring(BoxLua.Text)
 		end)
@@ -369,7 +369,7 @@ Execute.MouseButton1Up:Connect(function()
 			ShowNotifi("Error Lua: "..Reasson,8)
 		end
 		if IsSuccess == true then
-			loadstring(BoxLua.Text)
+			print("Nice")
 		end
 	end
 end)
