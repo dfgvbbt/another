@@ -346,10 +346,10 @@ end)
 
 Execute.MouseButton1Up:Connect(function()
 	if BoxUrl.Text ~= "" and BoxUrl.Visible == true then
-		loadstring(game:HttpGet(BoxUrl.Text))
+		loadstring(game:HttpGet((BoxUrl.Text)))
 	end
 	if BoxLua.Text ~= "" and BoxLua.Visible == true then
-		loadstring(BoxLua.Text)
+		loadstring((BoxLua.Text))
 	end
 end)
 
