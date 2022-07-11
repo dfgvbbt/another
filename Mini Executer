@@ -363,6 +363,7 @@ Execute.MouseButton1Up:Connect(function()
 		local IsSuccess,Reasson = pcall(function()
 			loadstring(BoxLua.Text)
 		end)
+		print(IsSuccess)
 		if IsSuccess == false then
 			ShowNotifi("Error Lua: "..Reasson,8)
 		elseif IsSuccess == true then
