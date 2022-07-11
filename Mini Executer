@@ -22,6 +22,11 @@ local UICorner_6 = Instance.new("UICorner")
 local Notification_Gui = Instance.new("TextLabel")
 local UICorner_7 = Instance.new("UICorner")
 local UIStroke = Instance.new("UIStroke")
+local ChooseMain = Instance.new("Frame")
+local UIListLayout = Instance.new("UIListLayout")
+local Chooser = Instance.new("TextButton")
+local StringValue = Instance.new("StringValue")
+local UIStroke_2 = Instance.new("UIStroke")
 
 --Properties
 
@@ -33,9 +38,10 @@ Small.Active = true
 Small.BackgroundColor3 = Color3.fromRGB(120, 136, 133)
 Small.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Small.ClipsDescendants = true
-Small.Position = UDim2.new(0, 0,0, 600) -- 0.403954804, 0, 0.481929779, 0
+Small.Position = UDim2.new(0, 0,0, 600) -- 0,0,0,600
 Small.Size = UDim2.new(0, 180, 0, 60)
 Small.Draggable = true
+
 
 UICorner.CornerRadius = UDim.new(0, 9)
 UICorner.Parent = Small
@@ -50,6 +56,7 @@ Clear.Font = Enum.Font.Highway
 Clear.Text = "Clear"
 Clear.TextColor3 = Color3.fromRGB(255, 0, 0)
 Clear.TextSize = 14.000
+Clear.ZIndex = 1.1
 
 UICorner_2.CornerRadius = UDim.new(0, 9)
 UICorner_2.Parent = Clear
@@ -64,6 +71,7 @@ Execute.Font = Enum.Font.SourceSans
 Execute.Text = "Execute"
 Execute.TextColor3 = Color3.fromRGB(255, 255, 255)
 Execute.TextSize = 14.000
+Execute.ZIndex = 1.1
 
 UICorner_3.CornerRadius = UDim.new(0, 9)
 UICorner_3.Parent = Execute
@@ -78,6 +86,7 @@ ModeLua.Font = Enum.Font.SourceSans
 ModeLua.Text = "Lua"
 ModeLua.TextColor3 = Color3.fromRGB(0, 0, 0)
 ModeLua.TextSize = 14.000
+
 
 ModeUrl.Name = "Mode-Url"
 ModeUrl.Parent = Small
@@ -124,6 +133,7 @@ BoxLua.Font = Enum.Font.SourceSans
 BoxLua.Text = ""
 BoxLua.TextColor3 = Color3.fromRGB(0, 0, 0)
 BoxLua.TextSize = 14.000
+BoxLua.MultiLine = true
 
 UICorner_5.Parent = BoxLua
 
@@ -139,6 +149,7 @@ BoxUrl.PlaceholderText = "https://pastepin.com/?"
 BoxUrl.Text = ""
 BoxUrl.TextColor3 = Color3.fromRGB(38, 255, 0)
 BoxUrl.TextSize = 14.000
+BoxUrl.MultiLine = true
 
 UICorner_6.Parent = BoxUrl
 
@@ -157,7 +168,7 @@ Notification_Gui.Text = "0"
 Notification_Gui.TextColor3 = Color3.fromRGB(255, 47, 47)
 Notification_Gui.TextSize = 20.000
 Notification_Gui.TextWrapped = true
-Notification_Gui.ZIndex = 1
+Notification_Gui.ZIndex = 2
 
 UICorner_7.CornerRadius = UDim.new(0, 9)
 UICorner_7.Parent = Notification_Gui
@@ -167,6 +178,35 @@ UIStroke.Enabled = true
 UIStroke.Thickness = 0.4
 UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
+ChooseMain.Name = "Choose"
+ChooseMain.Parent = ScreenGui
+ChooseMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ChooseMain.Position = UDim2.new(0.68978101, 0, 0.462998092, 0)
+ChooseMain.Size = UDim2.new(0, 200, 0, 20)
+ChooseMain.AutomaticSize = Enum.AutomaticSize.Y
+ChooseMain.Visible = false
+ChooseMain.ZIndex = 1
+
+UIListLayout.Parent = ChooseMain
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 1.5)
+
+Chooser.Name = "Chooser"
+Chooser.Parent = ChooseMain
+Chooser.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Chooser.BackgroundTransparency = 1.000
+Chooser.Size = UDim2.new(0, 200, 0, 20)
+Chooser.Font = Enum.Font.SourceSans
+Chooser.Text = ""
+Chooser.TextColor3 = Color3.fromRGB(0, 0, 0)
+Chooser.TextSize = 14.000
+Chooser.Visible = false
+
+StringValue.Name = "Value"
+StringValue.Parent = Chooser
+
+UIStroke_2.Parent = Chooser
+UIStroke_2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
 local Services = {
 	Workspace = game:GetService("Workspace");
@@ -198,14 +238,22 @@ local Settings = {
 		IsOpen = false,
 		UIStrokeThickness = 0.4,
 		Notification_BackgroundTrans = 0.4
+	},
+	BoxLua_ = {
+		IsMouseHere = false,
+	},
+	BoxUrl_ = {
+		IsMouseHere = false
 	}
 }
 --Script :)
 
-local function Effect_Text(object,text,timee)
+
+
+local function Effect_Text(object,text)
 	for i = 1 ,#text,1  do
 		object.Text = string.sub(text,1,i)
-		wait(timee)
+		wait()
 	end
 end
 
@@ -216,7 +264,7 @@ local function Mode_Lua()
 	BoxLua.Visible = true
 	ModeLua.BackgroundTransparency = 0.5
 	Settings.ModeLuaTrans = ModeLua.Transparency
-	
+
 end
 local function Mode_Url()
 	BoxLua.Visible = false
@@ -227,37 +275,44 @@ local function Mode_Url()
 	Settings.ModeUrlTrans = ModeUrl.Transparency
 end
 
-local function ShowNotifi(texts,time_to_hide)
+local function HideNotifi()
+	if Settings.Notification.IsOpen == true then
+		Services.TweenService:Create(Notification_Gui,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
+		Services.TweenService:Create(UIStroke,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency = 1}):Play()
+		Services.TweenService:Create(Notification_Gui,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
+		wait(0.5) Notification_Gui.Text = "" Settings.Notification.IsOpen = false
+	end
+end
+
+local function ShowNotifi(texts,timeleft)
+	--timeleft ko bat buoc
 	local posmouse = UIS:GetMouseLocation()
 	if Notification_Gui.BackgroundTransparency >= 0 and Settings.Notification.IsOpen == false then
-		Settings.Notification.IsOpen = true
 		task.spawn(function()
 			while wait() do
-				if time_to_hide == 0 then
-					Services.TweenService:Create(Notification_Gui,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
-					Services.TweenService:Create(UIStroke,TweenInfo.new(1.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency = 1}):Play()
-					Services.TweenService:Create(Notification_Gui,TweenInfo.new(1.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 1}):Play()
-					wait(1) Notification_Gui.Text = ""
-					Settings.Notification.IsOpen = false
-					break
-				end
+				if Notification_Gui.BackgroundTransparency == 1 or Settings.Notification.IsOpen == false then break end
 				posmouse = UIS:GetMouseLocation()
-				Notification_Gui.Position = UDim2.fromOffset(posmouse.X + 9,posmouse.Y - 59)
+				Notification_Gui.Position =  UDim2.fromOffset(posmouse.X + 9,posmouse.Y - 59)
 			end
 		end)
 		task.spawn(function()
-			while wait(1) do
-				if time_to_hide <= 0 then print("time out!") break end
-				time_to_hide -= 1
+			if tonumber(timeleft) then
+				while wait(1) do
+					if timeleft == 0 then HideNotifi() break end
+					timeleft -= 0.5
+				end
 			end
 		end)
+		Notification_Gui.Text = ""
+		Settings.Notification.IsOpen = true
 		Services.TweenService:Create(UIStroke,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency = 0}):Play()
 		Services.TweenService:Create(Notification_Gui,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
 		Services.TweenService:Create(Notification_Gui,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 0.4}):Play()
-		Effect_Text(Notification_Gui,texts,time_to_hide/10000)
-		
+		Effect_Text(Notification_Gui,texts)
 	end
 end
+
+
 
 local function HideGui()
 	for i,v in pairs(Small:GetChildren()) do
@@ -286,7 +341,7 @@ end
 local function ShowGui()
 	for i,v in pairs(Small:GetChildren()) do
 		if not v:IsA("UICorner") then
-			
+
 			if v:IsA("ImageButton") then
 				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{ImageTransparency = 0}):Play()
 			elseif v:IsA("TextBox") then
@@ -311,6 +366,38 @@ local function ShowGui()
 	end
 end
 
+
+local function CreateNewChoose(ChooseMainObject,Name,Value,CallBack,Desc)
+	local ThisChoise = ChooseMainObject.Chooser:Clone()
+	ThisChoise.Visible = true
+	ThisChoise.Parent = ChooseMain
+	ThisChoise.Name = Name
+	ThisChoise.Text = Name
+	ThisChoise:FindFirstChildWhichIsA("StringValue").Value = Value
+	ThisChoise.MouseEnter:Connect(function()
+		ThisChoise.BackgroundTransparency = 0.85
+		if Settings.Notification.IsOpen == false then
+			ShowNotifi(Desc)
+		end
+	end)
+	ThisChoise.MouseLeave:Connect(function()
+		ThisChoise.BackgroundTransparency = 1
+		if Settings.Notification.IsOpen == true then
+			HideNotifi()
+		end
+
+	end)
+	ThisChoise.MouseButton1Up:Connect(function()
+		CallBack(Value,ThisChoise.Parent)
+	end)
+end
+
+local function DeleteChoise(Object,Name)
+	Object:WaitForChild(Name):Destroy()
+end
+
+
+
 Destroy.MouseButton1Click:Connect(function()
 	for i,v,main in pairs(Small:GetChildren()) do
 		if not v:IsA("UICorner") then
@@ -331,6 +418,8 @@ Destroy.MouseButton1Click:Connect(function()
 	wait()
 	script:Destroy()
 end)
+
+
 
 Clear.MouseButton1Up:Connect(function()
 	if BoxUrl.Text ~= "" and BoxUrl.Visible == true then
@@ -354,7 +443,10 @@ Execute.MouseButton1Up:Connect(function()
 		end) 
 		print(IsSuccess)
 		if IsSuccess == false then
-			ShowNotifi('Error "'..Reasson..'"',8)
+			if Settings.Notification.IsOpen == false then
+				ShowNotifi(Reasson,6)
+			end
+			
 		end
 	end
 	if BoxLua.Text ~= "" and BoxLua.Visible == true then
@@ -362,7 +454,9 @@ Execute.MouseButton1Up:Connect(function()
 			loadstring(BoxLua.Text)()
 		end)
 		if IsSuccess == false then
-			ShowNotifi('Error "'..Reasson..'"',8)
+			if Settings.Notification.IsOpen == false then
+				ShowNotifi(Reasson,6)
+			end
 		end
 	end
 end)
@@ -379,6 +473,33 @@ ModeUrl.MouseButton1Up:Connect(function()
 	Mode_Url()
 end)
 
+
+BoxLua.MouseEnter:Connect(function()
+	Settings.BoxLua_.IsMouseHere = true
+end)
+
+BoxLua.MouseLeave:Connect(function()
+	Settings.BoxLua_.IsMouseHere = false
+end)
+
+BoxUrl.MouseEnter:Connect(function()
+	Settings.BoxUrl_.IsMouseHere = true
+end)
+
+BoxUrl.MouseLeave:Connect(function()
+	Settings.BoxUrl_.IsMouseHere = false
+end)
+
+UIS.InputBegan:Connect(function(input,process)
+	if input.UserInputType.Name == 'MouseButton2' then
+		if Settings.BoxLua_.IsMouseHere == true or Settings.BoxUrl_.IsMouseHere == true then
+			ChooseMain.Visible = true
+			ChooseMain.Position = UDim2.fromOffset(UIS:GetMouseLocation().X + 10,UIS:GetMouseLocation().Y -(32 + ((#ChooseMain:GetChildren()- 2)*20)))
+		end
+		
+	end
+end)
+
 game:GetService("UserInputService").InputBegan:Connect(function(input,gameprocess)
 	if gameprocess then return end
 	if (input.KeyCode == Enum.KeyCode.E and UIS:IsKeyDown(Enum.KeyCode.LeftControl)) then
@@ -391,3 +512,21 @@ game:GetService("UserInputService").InputBegan:Connect(function(input,gameproces
 end)
 
 game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", { Text = ("{Script} Ctrl + E To Hide Gui!"), Color = Color3.new(0.298039, 0.207843, 0.65098), TextSize = 18, })
+
+spawn(function()
+	local function Change(v,i)
+		if BoxLua.Visible == true then
+			BoxLua:CaptureFocus()
+			BoxLua.Text = ('loadstring(game:HttpGet('..v..'))')
+		end
+		if BoxUrl.Visible == true then
+			BoxUrl:CaptureFocus()
+			BoxUrl.Text = v
+		end
+		i.Visible = false
+	end
+	CreateNewChoose(ChooseMain,'Game Pass Script','https://github.com/dfgvbbt/another/raw/main/GamePass',Change,'it\39s give you free gamepass but only work some game')
+	CreateNewChoose(ChooseMain,'Parkour','https://raw.githubusercontent.com/dfgvbbt/another/main/Parkour',Change,'A Parkour Script, but i not try :D')
+	CreateNewChoose(ChooseMain,'Loop Fling All','https://github.com/DigitalityScripts/roblox-scripts/raw/main/loop%20fling%20all',Change,'The title says it all, WARNING: SCRIPT ONLY WORK IF YOU CAN TOUCH ANOTHER AND NEED EQUIP RTHO HAT/HEAD')
+	CreateNewChoose(ChooseMain,'Fighter','https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua',Change,'A fling script and no need any hat')
+end)
