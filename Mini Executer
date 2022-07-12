@@ -229,7 +229,6 @@ local Services = {
 	Stats = game:GetService("Stats");
 }
 
-
 local Settings = {
 	DefaultSmallColorBackground = Color3.fromRGB(120, 136, 133),
 	ModeUrlTrans = ModeUrl.Transparency,
@@ -367,10 +366,10 @@ local function ShowGui()
 end
 
 
-local function CreateNewChoose(ChooseMainObject,Name,Value,CallBack,Desc)
+local function CreateNewChoose(ChooseMainObject,Name,Value,Desc,CallBack)
 	local ThisChoise = ChooseMainObject.Chooser:Clone()
 	ThisChoise.Visible = true
-	ThisChoise.Parent = ChooseMain
+	ThisChoise.Parent = ChooseMainObject
 	ThisChoise.Name = Name
 	ThisChoise.Text = Name
 	ThisChoise:FindFirstChildWhichIsA("StringValue").Value = Value
@@ -396,7 +395,15 @@ local function DeleteChoise(Object,Name)
 	Object:WaitForChild(Name):Destroy()
 end
 
+local function CreateMainChoose(Name)
+	local ThisMain = ChooseMain:Clone()
+	ThisMain.Name = Name
+	ThisMain.Parent = ScreenGui
+	return ThisMain
+end
 
+
+local ChooseOfBox = CreateMainChoose('ChooseBox')
 
 Destroy.MouseButton1Click:Connect(function()
 	for i,v,main in pairs(Small:GetChildren()) do
@@ -493,16 +500,25 @@ end)
 UIS.InputBegan:Connect(function(input,process)
 	if input.UserInputType.Name == 'MouseButton2' then
 		if Settings.BoxLua_.IsMouseHere == true or Settings.BoxUrl_.IsMouseHere == true then
-			ChooseMain.Visible = true
-			ChooseMain.Position = UDim2.fromOffset(UIS:GetMouseLocation().X + 10,UIS:GetMouseLocation().Y -(32 + ((#ChooseMain:GetChildren()- 2)*20)))
+			ChooseOfBox.Visible = true
+			ChooseOfBox.Position = UDim2.fromOffset(UIS:GetMouseLocation().X + 10,UIS:GetMouseLocation().Y -(32 + ((#ChooseOfBox:GetChildren()- 2)*20)))
 		end
-		
+	end
+	if input.UserInputType == Enum.UserInputType.MouseButton1 and ChooseOfBox.Visible == true then
+		local NumberChooser = 0
+		for i,v in pairs(ChooseOfBox:GetChildren()) do
+			if v:IsA('TextButton') and v.BackgroundTransparency == 1 and v.Visible == true  then
+				NumberChooser += 1
+				print(NumberChooser)
+				if NumberChooser == (#ChooseOfBox:GetChildren() - 2) then ChooseOfBox.Visible = false NumberChooser = 0 end
+			end
+		end
 	end
 end)
-
+--KeyCode
 game:GetService("UserInputService").InputBegan:Connect(function(input,gameprocess)
 	if gameprocess then return end
-	if (input.KeyCode == Enum.KeyCode.E and UIS:IsKeyDown(Enum.KeyCode.LeftControl)) then
+	if (UIS:IsKeyDown(Enum.KeyCode.LeftControl) and input.KeyCode == Enum.KeyCode.E) then
 		if Small.Transparency == 0 then
 			HideGui()
 		else
@@ -514,7 +530,7 @@ end)
 game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", { Text = ("{Script} Ctrl + E To Hide Gui!"), Color = Color3.new(0.298039, 0.207843, 0.65098), TextSize = 18, })
 
 spawn(function()
-	local function Change(v,i)
+	local function Change(v,Parent)
 		if BoxLua.Visible == true then
 			BoxLua:CaptureFocus()
 			BoxLua.Text = ('loadstring(game:HttpGet('..v..'))')
@@ -523,10 +539,11 @@ spawn(function()
 			BoxUrl:CaptureFocus()
 			BoxUrl.Text = v
 		end
-		i.Visible = false
+		Parent.Visible = false
 	end
-	CreateNewChoose(ChooseMain,'Game Pass Script','https://github.com/dfgvbbt/another/raw/main/GamePass',Change,'it\39s give you free gamepass but only work some game')
-	CreateNewChoose(ChooseMain,'Parkour','https://raw.githubusercontent.com/dfgvbbt/another/main/Parkour',Change,'A Parkour Script, but i not try :D')
-	CreateNewChoose(ChooseMain,'Loop Fling All','https://github.com/DigitalityScripts/roblox-scripts/raw/main/loop%20fling%20all',Change,'The title says it all, WARNING: SCRIPT ONLY WORK IF YOU CAN TOUCH ANOTHER AND NEED EQUIP RTHO HAT/HEAD')
-	CreateNewChoose(ChooseMain,'Fighter','https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua',Change,'A fling script and no need any hat')
+	CreateNewChoose(ChooseOfBox,'Game Pass Script','https://github.com/dfgvbbt/another/raw/main/GamePass','it\39s give you free gamepass but only work some game',Change)
+	CreateNewChoose(ChooseOfBox,'Parkour','https://raw.githubusercontent.com/dfgvbbt/another/main/Parkour','A Parkour Script, but i not try :D',Change)
+	CreateNewChoose(ChooseOfBox,'Loop Fling All','https://github.com/DigitalityScripts/roblox-scripts/raw/main/loop%20fling%20all','The title says it all, WARNING: SCRIPT ONLY WORK IF YOU CAN TOUCH ANOTHER AND NEED EQUIP RTHO HAT/HEAD',Change)
+	CreateNewChoose(ChooseOfBox,'Fighter','https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua','A fling script and no need any hat',Change)
+	CreateNewChoose(ChooseOfBox,'Infinite Yield','https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source','A admin from local script and yeah...',Change)
 end)
