@@ -542,7 +542,7 @@ spawn(function()
 	local function Change(v,Parent)
 		if BoxLua.Visible == true then
 			BoxLua:CaptureFocus()
-			BoxLua.Text = ('loadstring(game:HttpGet('..v..'))')
+			BoxLua.Text = ('loadstring(game:HttpGet('..v..'))()')
 		end
 		if BoxUrl.Visible == true then
 			BoxUrl:CaptureFocus()
@@ -556,3 +556,4 @@ spawn(function()
 	CreateNewChoose(ChooseOfBox,'Fighter','https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua','A fling script and no need any hat',Change)
 	CreateNewChoose(ChooseOfBox,'Infinite Yield','https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source','A admin from local script and yeah...',Change)
 end)
+
