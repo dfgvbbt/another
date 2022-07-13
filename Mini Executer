@@ -27,9 +27,7 @@ local UIListLayout = Instance.new("UIListLayout")
 local Chooser = Instance.new("TextButton")
 local StringValue = Instance.new("StringValue")
 local UIStroke_2 = Instance.new("UIStroke")
-local TextFolder = Instance.new("Folder")
-local ScriptTooLong = Instance.new("TextLabel")
-local CurrentMode = Instance.new("TextLabel")
+
 
 
 --Properties
@@ -213,32 +211,7 @@ StringValue.Parent = Chooser
 UIStroke_2.Parent = Chooser
 UIStroke_2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
-TextFolder.Name = "TextFolder"
-TextFolder.Parent = Small
 
-ScriptTooLong.Name = "Script Too Long"
-ScriptTooLong.Parent = TextFolder
-ScriptTooLong.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ScriptTooLong.BackgroundTransparency = 1.000
-ScriptTooLong.Position = UDim2.new(0, 0, 0.25, 0)
-ScriptTooLong.Size = UDim2.new(0, 180, 0, 30)
-ScriptTooLong.Visible = false
-ScriptTooLong.Font = Enum.Font.SourceSans
-ScriptTooLong.Text = "Hidden Script Because It's Too Long!"
-ScriptTooLong.TextColor3 = Color3.fromRGB(255, 226, 7)
-ScriptTooLong.TextSize = 13.000
-
-CurrentMode.Name = "Mode"
-CurrentMode.Parent = TextFolder
-CurrentMode.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-CurrentMode.BackgroundTransparency = 1.000
-CurrentMode.Position = UDim2.new(0.660000026, 0, 0.0329999998, 0)
-CurrentMode.Size = UDim2.new(0, 23, 0, 11)
-CurrentMode.Font = Enum.Font.Gotham
-CurrentMode.Text = "Mini mode"
-CurrentMode.TextColor3 = Color3.fromRGB(177, 245, 225)
-CurrentMode.TextSize = 9.000
-CurrentMode.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
 
 local Services = {
 	Workspace = game:GetService("Workspace");
@@ -487,7 +460,7 @@ Execute.MouseButton1Up:Connect(function()
 			if Settings.Notification.IsOpen == false then
 				ShowNotifi(Reasson,6)
 			end
-			
+
 		end
 	end
 	if BoxLua.Text ~= "" and BoxLua.Visible == true then
@@ -564,49 +537,6 @@ end)
 game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", { Text = ("{Script} Ctrl + E To Hide Gui!"), Color = Color3.new(0.298039, 0.207843, 0.65098), TextSize = 18, })
 
 
-BoxUrl.Changed:Connect(function(property)
-	if property == 'Text' and CurrentMode.Text == 'Mini mode' then
-		wait(0.1)
-		if #BoxUrl.Text >= 35 and Settings.BoxUrl_.ManyTexts == false then
-			Settings.BoxUrl_.ManyTexts = true
-			Services.TweenService:Create(BoxUrl,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
-			BoxUrl.ZIndex = 1.1
-			spawn(function()
-				while wait(0.1) do
-					if #BoxUrl.Text <= 34 then ScriptTooLong.Visible = false Services.TweenService:Create(BoxUrl,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play() break end
-					if BoxUrl.Visible == true then
-						ScriptTooLong.Visible = true
-						Services.TweenService:Create(ScriptTooLong,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
-					end
-				end
-			end)
-		else
-			Settings.BoxUrl_.ManyTexts = false
-		end
-	end
-end)
-
-BoxLua.Changed:Connect(function(property)
-	if property == 'Text' and CurrentMode.Text == 'Mini mode' then
-		wait(0.1)
-		if #BoxLua.Text >= 35 and Settings.BoxUrl_.ManyTexts == false then
-			Settings.BoxLua_.ManyTexts = true
-			Services.TweenService:Create(BoxLua,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
-			BoxLua.ZIndex = 1.1
-			spawn(function()
-				while wait(0.1) do
-					if #BoxLua.Text <= 34 then ScriptTooLong.Visible = false Services.TweenService:Create(BoxLua,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play() break end
-					if BoxLua.Visible == true then
-						ScriptTooLong.Visible = true
-						Services.TweenService:Create(ScriptTooLong,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
-					end
-				end
-			end)
-		else
-			Settings.BoxLua_.ManyTexts = false
-		end
-	end
-end)
 
 spawn(function()
 	local function Change(v,Parent)
