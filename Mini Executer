@@ -410,7 +410,7 @@ local function CreateMainChoose(Name)
 end
 
 
-local ChooseOfBox = CreateMainChoose('ChooseBox')
+local ListChoiseFeScript = CreateMainChoose('ChooseBox')
 
 Destroy.MouseButton1Click:Connect(function()
 	for i,v,main in pairs(Small:GetChildren()) do
@@ -505,8 +505,8 @@ end)
 UIS.InputBegan:Connect(function(input,process)
 	if input.UserInputType.Name == 'MouseButton2' then
 		if Settings.BoxLua_.IsMouseHere == true or Settings.BoxUrl_.IsMouseHere == true then
-			ChooseOfBox.Visible = true
-			ChooseOfBox.Position = UDim2.fromOffset(UIS:GetMouseLocation().X + 10,UIS:GetMouseLocation().Y -(32 + ((#ChooseOfBox:GetChildren()- 2)*20)))
+			ListChoiseFeScript.Visible = true
+			ListChoiseFeScript.Position = UDim2.fromOffset(UIS:GetMouseLocation().X + 10,UIS:GetMouseLocation().Y -(32 + ((#ListChoiseFeScript:GetChildren()- 2)*20)))
 		end
 	end
 	if input.UserInputType == Enum.UserInputType.MouseButton1 and ChooseOfBox.Visible == true then
@@ -546,10 +546,10 @@ spawn(function()
 		end
 		Parent.Visible = false
 	end
-	CreateNewChoose(ChooseOfBox,'Game Pass Script','https://github.com/dfgvbbt/another/raw/main/GamePass','it\39s give you free gamepass but only work some game',Change)
-	CreateNewChoose(ChooseOfBox,'Parkour','https://raw.githubusercontent.com/dfgvbbt/another/main/Parkour','A Parkour Script, but i not try :D',Change)
-	CreateNewChoose(ChooseOfBox,'Loop Fling All','https://github.com/DigitalityScripts/roblox-scripts/raw/main/loop%20fling%20all','The title says it all, WARNING: SCRIPT ONLY WORK IF YOU CAN TOUCH ANOTHER AND NEED EQUIP RTHO HAT/HEAD',Change)
-	CreateNewChoose(ChooseOfBox,'Fighter','https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua','A fling script and no need any hat',Change)
-	CreateNewChoose(ChooseOfBox,'Infinite Yield','https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source','A admin from local script and yeah...',Change)
+	CreateNewChoose(ListChoiseFeScript,'Game Pass Script','https://github.com/dfgvbbt/another/raw/main/GamePass','it\39s give you free gamepass but only work some game',Change)
+	CreateNewChoose(ListChoiseFeScript,'Parkour','https://raw.githubusercontent.com/dfgvbbt/another/main/Parkour','A Parkour Script, but i not try :D',Change)
+	CreateNewChoose(ListChoiseFeScript,'Loop Fling All','https://github.com/DigitalityScripts/roblox-scripts/raw/main/loop%20fling%20all','The title says it all, WARNING: SCRIPT ONLY WORK IF YOU CAN TOUCH ANOTHER AND NEED EQUIP RTHO HAT/HEAD',Change)
+	CreateNewChoose(ListChoiseFeScript,'Fighter','https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua','A fling script and no need any hat',Change)
+	CreateNewChoose(ListChoiseFeScript,'Infinite Yield','https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source','A admin from local script and yeah...',Change)
 end)
 
