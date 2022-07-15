@@ -438,13 +438,11 @@ end)
 Clear.MouseButton1Up:Connect(function()
 	if BoxUrl.Text ~= "" and BoxUrl.Visible == true then
 		spawn(function()
-			BoxUrl:CaptureFocus()
 			BoxUrl.Text = ""
 		end)
 	end
 	if BoxLua.Text ~= "" and BoxLua.Visible == true then
 		spawn(function()
-			BoxLua:CaptureFocus()
 			BoxLua.Text = ""
 		end)
 	end
@@ -541,11 +539,9 @@ game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", { Text = ("{Scrip
 spawn(function()
 	local function Change(v,Parent)
 		if BoxLua.Visible == true then
-			BoxLua:CaptureFocus()
-			BoxLua.Text = ('loadstring(game:HttpGet('..v..'))()')
+			BoxLua.Text = ('loadstring(game:HttpGet("'..v..'"))()')
 		end
 		if BoxUrl.Visible == true then
-			BoxUrl:CaptureFocus()
 			BoxUrl.Text = v
 		end
 		Parent.Visible = false
