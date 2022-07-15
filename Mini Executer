@@ -515,7 +515,7 @@ UIS.InputBegan:Connect(function(input,process)
 			if v:IsA('TextButton') and v.BackgroundTransparency == 1 and v.Visible == true  then
 				NumberChooser += 1
 				print(NumberChooser)
-				if NumberChooser == (#ListChoiseFeScript:GetChildren() - 2) then ChooseOfBox.Visible = false NumberChooser = 0 end
+				if NumberChooser == (#ListChoiseFeScript:GetChildren() - 2) then ListChoiseFeScript.Visible = false NumberChooser = 0 end
 			end
 		end
 	end
