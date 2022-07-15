@@ -509,13 +509,13 @@ UIS.InputBegan:Connect(function(input,process)
 			ListChoiseFeScript.Position = UDim2.fromOffset(UIS:GetMouseLocation().X + 10,UIS:GetMouseLocation().Y -(32 + ((#ListChoiseFeScript:GetChildren()- 2)*20)))
 		end
 	end
-	if input.UserInputType == Enum.UserInputType.MouseButton1 and ChooseOfBox.Visible == true then
+	if input.UserInputType == Enum.UserInputType.MouseButton1 and ListChoiseFeScript.Visible == true then
 		local NumberChooser = 0
-		for i,v in pairs(ChooseOfBox:GetChildren()) do
+		for i,v in pairs(ListChoiseFeScript:GetChildren()) do
 			if v:IsA('TextButton') and v.BackgroundTransparency == 1 and v.Visible == true  then
 				NumberChooser += 1
 				print(NumberChooser)
-				if NumberChooser == (#ChooseOfBox:GetChildren() - 2) then ChooseOfBox.Visible = false NumberChooser = 0 end
+				if NumberChooser == (#ListChoiseFeScript:GetChildren() - 2) then ChooseOfBox.Visible = false NumberChooser = 0 end
 			end
 		end
 	end
