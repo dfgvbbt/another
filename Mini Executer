@@ -547,7 +547,6 @@ spawn(function()
 		Parent.Visible = false
 	end
 	CreateNewChoose(ListChoiseFeScript,'Game Pass Script','https://github.com/dfgvbbt/another/raw/main/GamePass','it\39s give you free gamepass but only work some game',Change)
-	CreateNewChoose(ListChoiseFeScript,'Parkour','https://raw.githubusercontent.com/dfgvbbt/another/main/Parkour','A Parkour Script, but i not try :D',Change)
 	CreateNewChoose(ListChoiseFeScript,'Loop Fling All','https://github.com/DigitalityScripts/roblox-scripts/raw/main/loop%20fling%20all','The title says it all, WARNING: SCRIPT ONLY WORK IF YOU CAN TOUCH ANOTHER AND NEED EQUIP RTHO HAT/HEAD',Change)
 	CreateNewChoose(ListChoiseFeScript,'Fighter','https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua','A fling script and no need any hat',Change)
 	CreateNewChoose(ListChoiseFeScript,'Infinite Yield','https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source','A admin from local script and yeah...',Change)
