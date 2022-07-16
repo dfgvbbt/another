@@ -550,5 +550,6 @@ spawn(function()
 	CreateNewChoose(ListChoiseFeScript,'Loop Fling All','https://github.com/DigitalityScripts/roblox-scripts/raw/main/loop%20fling%20all','The title says it all, WARNING: SCRIPT ONLY WORK IF YOU CAN TOUCH ANOTHER AND NEED EQUIP RTHO HAT/HEAD',Change)
 	CreateNewChoose(ListChoiseFeScript,'Fighter','https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua','A fling script and no need any hat',Change)
 	CreateNewChoose(ListChoiseFeScript,'Infinite Yield','https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source','A admin from local script and yeah...',Change)
+	CreateNewChoose(ListChoiseFeScript,'Fps Boost','https://pastebin.com/raw/x3PMUeuE','Fps Boost for...ummmm, ye...',Change)
 end)
 
