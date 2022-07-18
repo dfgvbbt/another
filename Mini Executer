@@ -539,7 +539,7 @@ game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", { Text = ("{Scrip
 spawn(function()
 	local function Change(v,Parent)
 		if BoxLua.Visible == true then
-			BoxLua.Text = ('loadstring(game:HttpGet("'..v..'"))()')
+			BoxLua.Text = ('loadstring(game:HttpGet(\39'..v..'\39))()')
 		end
 		if BoxUrl.Visible == true then
 			BoxUrl.Text = v
