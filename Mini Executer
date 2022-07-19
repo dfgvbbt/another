@@ -33,7 +33,7 @@ local UIStroke_2 = Instance.new("UIStroke")
 --Properties
 
 ScreenGui.Name = 'Mini Executer'
-ScreenGui.Parent = game.CoreGui
+ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
 
 Small.Name = "Small"
 Small.Parent = ScreenGui
@@ -41,7 +41,7 @@ Small.Active = true
 Small.BackgroundColor3 = Color3.fromRGB(120, 136, 133)
 Small.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Small.ClipsDescendants = true
-Small.Position = UDim2.new(0, 0,0, 600) -- 0,0,0,600
+Small.Position = UDim2.new(0, 0,0, 400) -- 0,0,0,600 -- 0,0,0,400
 Small.Size = UDim2.new(0, 180, 0, 60)
 Small.Draggable = true
 
@@ -412,6 +412,14 @@ end
 
 local ListChoiseFeScript = CreateMainChoose('ChooseBox')
 
+
+local function LTU(Url) --Loadstring Url Sir :3
+	local idk = loadstring(game:HttpGet(Url))()
+	return idk
+end
+
+
+
 Destroy.MouseButton1Click:Connect(function()
 	for i,v,main in pairs(Small:GetChildren()) do
 		if not v:IsA("UICorner") then
@@ -546,6 +554,7 @@ spawn(function()
 		end
 		Parent.Visible = false
 	end
+	CreateNewChoose(ListChoiseFeScript,'List Script','https://github.com/dfgvbbt/Game/raw/main/Tong%20Hop','My List Script Game For The Game I Played :3',Change)
 	CreateNewChoose(ListChoiseFeScript,'Game Pass Script','https://github.com/dfgvbbt/another/raw/main/GamePass','it\39s give you free gamepass but only work some game',Change)
 	CreateNewChoose(ListChoiseFeScript,'Loop Fling All','https://github.com/DigitalityScripts/roblox-scripts/raw/main/loop%20fling%20all','The title says it all, WARNING: SCRIPT ONLY WORK IF YOU CAN TOUCH ANOTHER AND NEED EQUIP RTHO HAT/HEAD',Change)
 	CreateNewChoose(ListChoiseFeScript,'Fighter','https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua','A fling script and no need any hat',Change)
@@ -553,4 +562,3 @@ spawn(function()
 	CreateNewChoose(ListChoiseFeScript,'Fates Admin','https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua','A admin script :)',Change)
 	CreateNewChoose(ListChoiseFeScript,'Fps Boost','https://pastebin.com/raw/x3PMUeuE','Fps Boost for...ummmm, ye...',Change)
 end)
-
