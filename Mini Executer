@@ -205,9 +205,6 @@ Chooser.TextColor3 = Color3.fromRGB(0, 0, 0)
 Chooser.TextSize = 14.000
 Chooser.Visible = false
 
-StringValue.Name = "Value"
-StringValue.Parent = Chooser
-
 UIStroke_2.Parent = Chooser
 UIStroke_2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
@@ -241,7 +238,7 @@ local Settings = {
 	Notification = {
 		IsOpen = false,
 		UIStrokeThickness = 0.4,
-		Notification_BackgroundTrans = 0.4
+		Notification_BackgroundTrans = 0.4,
 	},
 	BoxLua_ = {
 		IsMouseHere = false,
@@ -249,8 +246,14 @@ local Settings = {
 	},
 	BoxUrl_ = {
 		IsMouseHere = false,
-		ManyTexts = false
-	}
+		ManyTexts = false,
+	},
+	ChooseList = {
+		IsOpenList = {
+			OpenForever = false,
+			OpenTemp = false,
+		},
+	},
 }
 --Script :)
 
@@ -379,7 +382,6 @@ local function CreateNewChoose(ChooseMainObject,Name,Value,Desc,CallBack)
 	ThisChoise.Parent = ChooseMainObject
 	ThisChoise.Name = Name
 	ThisChoise.Text = Name
-	ThisChoise:FindFirstChildWhichIsA("StringValue").Value = Value
 	ThisChoise.MouseEnter:Connect(function()
 		ThisChoise.BackgroundTransparency = 0.85
 		if Settings.Notification.IsOpen == false then
@@ -394,9 +396,69 @@ local function CreateNewChoose(ChooseMainObject,Name,Value,Desc,CallBack)
 
 	end)
 	ThisChoise.MouseButton1Up:Connect(function()
-		CallBack(Value,ThisChoise.Parent)
+		CallBack(Value,ChooseMainObject)
 	end)
 end
+
+local function CreateNewChooseList(ChooseMainObject,Name)
+	local ThisChoise = ChooseMainObject.Chooser:Clone()
+	ThisChoise.Visible = true
+	ThisChoise.Parent = ChooseMainObject
+	ThisChoise.Name = Name
+	ThisChoise.Text = Name
+	local ThisList = ChooseMainObject:Clone()
+	ThisList.Name = Name..' | List'
+	ThisList.Parent = ThisChoise
+	ThisList.AutoLocalize = false
+	for i,v in pairs(ThisList:GetChildren()) do
+		if v.Name ~= 'Chooser' and v.Name ~= 'UIListLayout' then
+			v:Destroy()
+		end
+	end
+	
+	local function SetPositionList()
+		ThisList.Position = UDim2.fromOffset(ThisChoise.Position.X.Offset + 200,-(0.5 * (#ThisList:GetChildren() - 2)))
+	end
+	SetPositionList()
+	ThisList.ChildAdded:Connect(SetPositionList)
+	ThisList.ChildRemoved:Connect(SetPositionList)
+	
+	ThisChoise.MouseEnter:Connect(function()
+		ThisChoise.BackgroundTransparency = 0.85
+	end)
+	
+	ThisChoise.MouseLeave:Connect(function()
+		ThisChoise.BackgroundTransparency = 1
+	end)
+	
+	ThisChoise.MouseButton1Up:Connect(function()
+		if ThisList.Visible == false and Settings.ChooseList.IsOpenList.OpenForever == false then
+			Settings.ChooseList.IsOpenList.OpenForever = true
+			ThisList.Visible = true
+			ChooseMainObject.BackgroundTransparency = 1
+			task.spawn(function()
+				while wait() do
+					if ThisList.Visible == false then 
+						ThisChoise.BackgroundTransparency = 1
+						ChooseMainObject.BackgroundTransparency = 0
+						break 
+					end
+					ThisChoise.BackgroundTransparency = 0.85
+				end
+			end)
+			
+		else
+			ThisChoise.BackgroundTransparency = 1
+			ChooseMainObject.BackgroundTransparency = 0
+			Settings.ChooseList.IsOpenList.OpenForever = false
+			ThisList.Visible = false
+		end
+		
+	end)
+	
+	return ThisList
+end
+
 
 local function DeleteChoise(Object,Name)
 	Object:WaitForChild(Name):Destroy()
@@ -518,6 +580,7 @@ UIS.InputBegan:Connect(function(input,process)
 		end
 	end
 	if input.UserInputType == Enum.UserInputType.MouseButton1 and ListChoiseFeScript.Visible == true then
+		wait()
 		local NumberChooser = 0
 		for i,v in pairs(ListChoiseFeScript:GetChildren()) do
 			if v:IsA('TextButton') and v.BackgroundTransparency == 1 and v.Visible == true  then
@@ -553,13 +616,19 @@ spawn(function()
 			BoxUrl.Text = v
 		end
 		Parent.Visible = false
+		ListChoiseFeScript.Visible = false
 	end
-	CreateNewChoose(ListChoiseFeScript,'List Script','https://github.com/dfgvbbt/Game/raw/main/Tong%20Hop','My List Script Game For The Game I Played :3',Change)
-	CreateNewChoose(ListChoiseFeScript,'Game Pass Script','https://github.com/dfgvbbt/another/raw/main/GamePass','it\39s give you free gamepass but only work some game',Change)
-	CreateNewChoose(ListChoiseFeScript,'Loop Fling All','https://github.com/DigitalityScripts/roblox-scripts/raw/main/loop%20fling%20all','The title says it all, WARNING: SCRIPT ONLY WORK IF YOU CAN TOUCH ANOTHER AND NEED EQUIP RTHO HAT/HEAD',Change)
-	CreateNewChoose(ListChoiseFeScript,'Fighter','https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua','A fling script and no need any hat',Change)
-	CreateNewChoose(ListChoiseFeScript,'Infinite Yield','https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source','A admin from local script and yeah...',Change)
-	CreateNewChoose(ListChoiseFeScript,'Fates Admin','https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua','A admin script :)',Change)
-	CreateNewChoose(ListChoiseFeScript,'Dark Dex v3','https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua','This script will show all intansce this game have and do somethings to that!',Change)
-	CreateNewChoose(ListChoiseFeScript,'Fps Boost','https://pastebin.com/raw/x3PMUeuE','Fps Boost for...ummmm, ye...',Change)
+	local MyScript = CreateNewChooseList(ListChoiseFeScript,'My List')
+	local Fling = CreateNewChooseList(ListChoiseFeScript,'Fling List')
+	local Admin = CreateNewChooseList(ListChoiseFeScript,'Admin List')
+	local Another = CreateNewChooseList(ListChoiseFeScript,'Another')
+	
+	CreateNewChoose(MyScript,'List Script','https://github.com/dfgvbbt/Game/raw/main/Tong%20Hop','My List Script Game For The Game I Played :3',Change)
+	CreateNewChoose(Another,'Game Pass Script','https://github.com/dfgvbbt/another/raw/main/GamePass','it\39s give you free gamepass but only work some game',Change)
+	CreateNewChoose(Fling,'Loop Fling All','https://github.com/DigitalityScripts/roblox-scripts/raw/main/loop%20fling%20all','The title says it all, WARNING: SCRIPT ONLY WORK IF YOU CAN TOUCH ANOTHER AND NEED EQUIP RTHO HAT/HEAD',Change)
+	CreateNewChoose(Fling,'Fighter','https://raw.githubusercontent.com/followz/Amazement-v2.2/main/Protected%20(16).lua','A fling script and no need any hat',Change)
+	CreateNewChoose(Admin,'Infinite Yield','https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source','A admin from local script and yeah...',Change)
+	CreateNewChoose(Admin,'Fates Admin','https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua','A admin script :)',Change)
+	CreateNewChoose(Another,'Fps Boost','https://pastebin.com/raw/x3PMUeuE','Fps Boost for...ummmm, ye...',Change)
+	CreateNewChoose(Another,'Dark Dex v3','https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua','This script will show all intansce this game have and do somethings to that!',Change)	
 end)
