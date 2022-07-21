@@ -618,10 +618,24 @@ spawn(function()
 		Parent.Visible = false
 		ListChoiseFeScript.Visible = false
 	end
+	local function ChangeLua(v,Parent)
+		if BoxLua.Visible == true then
+			BoxLua.Text = (v)
+		end
+		if BoxUrl.Visible == true then
+			Mode_Lua()
+			BoxLua.Text = (v)
+		end
+		Parent.Visible = false
+		ListChoiseFeScript.Visible = false
+	end
+	
+	
 	local MyScript = CreateNewChooseList(ListChoiseFeScript,'My List')
 	local Fling = CreateNewChooseList(ListChoiseFeScript,'Fling List')
 	local Admin = CreateNewChooseList(ListChoiseFeScript,'Admin List')
 	local Another = CreateNewChooseList(ListChoiseFeScript,'Another')
+	local Character = CreateNewChooseList(ListChoiseFeScript,'Character')
 	
 	CreateNewChoose(MyScript,'List Script','https://github.com/dfgvbbt/Game/raw/main/Tong%20Hop','My List Script Game For The Game I Played :3',Change)
 	CreateNewChoose(Another,'Game Pass Script','https://github.com/dfgvbbt/another/raw/main/GamePass','it\39s give you free gamepass but only work some game',Change)
@@ -631,4 +645,5 @@ spawn(function()
 	CreateNewChoose(Admin,'Fates Admin','https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua','A admin script :)',Change)
 	CreateNewChoose(Another,'Fps Boost','https://pastebin.com/raw/x3PMUeuE','Fps Boost for...ummmm, ye...',Change)
 	CreateNewChoose(Another,'Dark Dex v3','https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua','This script will show all intansce this game have and do somethings to that!',Change)	
+	CreateNewChoose(Character,'Invisiblity',('local removeNametags = false -- remove custom billboardgui nametags from hrp, could trigger anticheat local plr = game:GetService("Players").LocalPlayer local character = plr.Character local hrp = character.HumanoidRootPart local old = hrp.CFrame if not character:FindFirstChild("LowerTorso") or character.PrimaryPart ~= hrp then return print("unsupported") end if removeNametags then local tag = hrp:FindFirstChildOfClass("BillboardGui") if tag then tag:Destroy() end hrp.ChildAdded:Connect(function(item) if item:IsA("BillboardGui") then task.wait() item:Destroy() end end) end local newroot = character.LowerTorso.Root:Clone() hrp.Parent = workspace character.PrimaryPart = hrp character:MoveTo(Vector3.new(old.X,9e9,old.Z)) hrp.Parent = character task.wait(0.5) newroot.Parent = character.LowerTorso hrp.CFrame = old'),'Real invisible :3',ChangeLua)
 end)
