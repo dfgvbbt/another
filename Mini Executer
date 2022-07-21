@@ -3,6 +3,8 @@
 
 -- Instances:
 local UIS = game:GetService("UserInputService")
+local queueteleport
+--local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 local ScreenGui = Instance.new("ScreenGui")
 local Small = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -255,6 +257,11 @@ local Settings = {
 		},
 	},
 }
+
+--Soon c:
+local PlayerSettings = {
+	KeepExecute = true,
+}
 --Script :)
 
 
@@ -415,22 +422,22 @@ local function CreateNewChooseList(ChooseMainObject,Name)
 			v:Destroy()
 		end
 	end
-	
+
 	local function SetPositionList()
 		ThisList.Position = UDim2.fromOffset(ThisChoise.Position.X.Offset + 200,-(0.5 * (#ThisList:GetChildren() - 2)))
 	end
 	SetPositionList()
 	ThisList.ChildAdded:Connect(SetPositionList)
 	ThisList.ChildRemoved:Connect(SetPositionList)
-	
+
 	ThisChoise.MouseEnter:Connect(function()
 		ThisChoise.BackgroundTransparency = 0.85
 	end)
-	
+
 	ThisChoise.MouseLeave:Connect(function()
 		ThisChoise.BackgroundTransparency = 1
 	end)
-	
+
 	ThisChoise.MouseButton1Up:Connect(function()
 		if ThisList.Visible == false and Settings.ChooseList.IsOpenList.OpenForever == false then
 			Settings.ChooseList.IsOpenList.OpenForever = true
@@ -446,16 +453,16 @@ local function CreateNewChooseList(ChooseMainObject,Name)
 					ThisChoise.BackgroundTransparency = 0.85
 				end
 			end)
-			
+
 		else
 			ThisChoise.BackgroundTransparency = 1
 			ChooseMainObject.BackgroundTransparency = 0
 			Settings.ChooseList.IsOpenList.OpenForever = false
 			ThisList.Visible = false
 		end
-		
+
 	end)
-	
+
 	return ThisList
 end
 
@@ -499,6 +506,7 @@ Destroy.MouseButton1Click:Connect(function()
 	Small:Destroy()
 	Notification_Gui:Destroy()
 	ScreenGui:Destroy()
+	PlayerSettings.KeepExecute = false
 	wait()
 	script:Destroy()
 end)
@@ -605,8 +613,17 @@ end)
 
 game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", { Text = ("{Script} Ctrl + E To Hide Gui!"), Color = Color3.new(0.298039, 0.207843, 0.65098), TextSize = 18, })
 
+--Another
+--Auto Excute
+game.Players.LocalPlayer.OnTeleport:Connect(function(State)
+	if State == Enum.TeleportState.Started then
+		if PlayerSettings.KeepExecute == true and queueteleport then
+			queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/dfgvbbt/another/main/Mini%20Executer'))()")
+		end
+	end
+end)
 
-
+--List Script :)
 spawn(function()
 	local function Change(v,Parent)
 		if BoxLua.Visible == true then
@@ -629,14 +646,14 @@ spawn(function()
 		Parent.Visible = false
 		ListChoiseFeScript.Visible = false
 	end
-	
-	
+
+
 	local MyScript = CreateNewChooseList(ListChoiseFeScript,'My List')
 	local Fling = CreateNewChooseList(ListChoiseFeScript,'Fling List')
 	local Admin = CreateNewChooseList(ListChoiseFeScript,'Admin List')
 	local Another = CreateNewChooseList(ListChoiseFeScript,'Another')
 	local Character = CreateNewChooseList(ListChoiseFeScript,'Character')
-	
+
 	CreateNewChoose(MyScript,'List Script','https://github.com/dfgvbbt/Game/raw/main/Tong%20Hop','My List Script Game For The Game I Played :3',Change)
 	CreateNewChoose(Another,'Game Pass Script','https://github.com/dfgvbbt/another/raw/main/GamePass','it\39s give you free gamepass but only work some game',Change)
 	CreateNewChoose(Fling,'Loop Fling All','https://github.com/DigitalityScripts/roblox-scripts/raw/main/loop%20fling%20all','The title says it all, WARNING: SCRIPT ONLY WORK IF YOU CAN TOUCH ANOTHER AND NEED EQUIP RTHO HAT/HEAD',Change)
