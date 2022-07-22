@@ -1,7 +1,9 @@
--- Gui to Lua
--- Version: 3.2
+--[[ Phần giới thịu tín vịt :)
+	Script hack dc tạo ra để cho cái máy lag vcl của tôi cũng là nơi lưu trữ những script fe(Xài đc tất cả game, và cũng có thể bị kick nếu anticheat pro vip khi execute)
+	Lần đầu làm script nếu có lỗi thì thôi 😐
+]]
 
--- Instances:
+-- Phần Instances:
 local UIS = game:GetService("UserInputService")
 local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
 
@@ -32,7 +34,7 @@ local UIStroke_2 = Instance.new("UIStroke")
 
 
 
---Properties
+--Thuộc Tính Của các intansce ở trên (Properties)
 
 ScreenGui.Name = 'Mini Executer'
 ScreenGui.Parent = game.CoreGui
@@ -210,7 +212,7 @@ Chooser.Visible = false
 UIStroke_2.Parent = Chooser
 UIStroke_2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
-
+--Local (chủ yếu để làm script ngắn hơn)
 
 local Services = {
 	Workspace = game:GetService("Workspace");
@@ -258,15 +260,17 @@ local Settings = {
 	},
 }
 
---Soon c:
+--Làm gui sau c:
+
 local PlayerSettings = {
 	KeepExecute = true,
 }
+
 --Script :)
 
 
 
-local function Effect_Text(object,text)
+local function Effect_Text(object,text) --Hiện những dòng chữ theo từng chữ
 	for i = 1 ,#text,1  do
 		object.Text = string.sub(text,1,i)
 		wait()
@@ -291,7 +295,7 @@ local function Mode_Url()
 	Settings.ModeUrlTrans = ModeUrl.Transparency
 end
 
-local function HideNotifi()
+local function HideNotifi() --Ẩn thông báo
 	if Settings.Notification.IsOpen == true then
 		Services.TweenService:Create(Notification_Gui,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
 		Services.TweenService:Create(UIStroke,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency = 1}):Play()
@@ -300,18 +304,18 @@ local function HideNotifi()
 	end
 end
 
-local function ShowNotifi(texts,timeleft)
+local function ShowNotifi(texts,timeleft) --Hiện thông báo bằng gui khi có việc gì đó
 	--timeleft ko bat buoc
-	local posmouse = UIS:GetMouseLocation()
+	local posmouse = UIS:GetMouseLocation() -- Lấy vị trí chuột trên màn hình
 	if Notification_Gui.BackgroundTransparency >= 0 and Settings.Notification.IsOpen == false then
 		task.spawn(function()
 			while wait() do
 				if Notification_Gui.BackgroundTransparency == 1 or Settings.Notification.IsOpen == false then break end
 				posmouse = UIS:GetMouseLocation()
-				Notification_Gui.Position =  UDim2.fromOffset(posmouse.X + 9,posmouse.Y - 59)
+				Notification_Gui.Position =  UDim2.fromOffset(posmouse.X + 9,posmouse.Y - 59) --Để vị trí thông báo gui trên con chuột
 			end
 		end)
-		task.spawn(function()
+		task.spawn(function() -- ko bắt buộc :)
 			if tonumber(timeleft) then
 				while wait(0.5) do
 					if timeleft == 0 then HideNotifi() break end
@@ -319,19 +323,19 @@ local function ShowNotifi(texts,timeleft)
 				end
 			end
 		end)
-		Notification_Gui.Text = ""
+		Notification_Gui.Text = "" --Xóa chữ cũ khi xài cái mới
 		Settings.Notification.IsOpen = true
 		Services.TweenService:Create(UIStroke,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency = 0}):Play()
 		Services.TweenService:Create(Notification_Gui,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 0}):Play()
 		Services.TweenService:Create(Notification_Gui,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{BackgroundTransparency = 0.4}):Play()
-		Effect_Text(Notification_Gui,texts)
+		Effect_Text(Notification_Gui,texts)--Làm chữ màu mè :)
 	end
 end
 
 
 
-local function HideGui()
-	for i,v in pairs(Small:GetChildren()) do
+local function HideGui() --Ẩn Mini executer nhỏ
+	for i,v in pairs(Small:GetChildren()) do --Lấy mấy thằng con của nó để làm gì đó(i là index,v là value;và 'i,v' là tên nên đặt gì cũng dc)
 		if not v:IsA("UICorner") then
 			if v:IsA("ImageButton") then
 				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{ImageTransparency = 1}):Play()
@@ -354,7 +358,7 @@ local function HideGui()
 	end
 end
 
-local function ShowGui()
+local function ShowGui() -- ẩn small mini executer
 	for i,v in pairs(Small:GetChildren()) do
 		if not v:IsA("UICorner") then
 
@@ -383,27 +387,27 @@ local function ShowGui()
 end
 
 
-local function CreateNewChoose(ChooseMainObject,Name,Value,Desc,CallBack)
-	local ThisChoise = ChooseMainObject.Chooser:Clone()
-	ThisChoise.Visible = true
-	ThisChoise.Parent = ChooseMainObject
-	ThisChoise.Name = Name
-	ThisChoise.Text = Name
-	ThisChoise.MouseEnter:Connect(function()
+local function CreateNewChoose(ChooseMainObject,Name,Value,Desc,CallBack) --Tạo câu trả lời cho cái kia
+	local ThisChoise = ChooseMainObject.Chooser:Clone() --Tạo câu trả lời
+	ThisChoise.Visible = true --Làm câu trả lời có thể nhìn được
+	ThisChoise.Parent = ChooseMainObject --Để câu hổi trong cái kia vì thường clone sẽ chuyễn parent
+	ThisChoise.Name = Name -- Chỉnh tên
+	ThisChoise.Text = Name -- Chỉnh chữ để nhìn
+	ThisChoise.MouseEnter:Connect(function() --Làm gì đó khi chuột để vào câu trả lời
 		ThisChoise.BackgroundTransparency = 0.85
 		if Settings.Notification.IsOpen == false then
 			ShowNotifi(Desc)
 		end
 	end)
-	ThisChoise.MouseLeave:Connect(function()
+	ThisChoise.MouseLeave:Connect(function() -- Như trên nhưng ngược lại
 		ThisChoise.BackgroundTransparency = 1
 		if Settings.Notification.IsOpen == true then
 			HideNotifi()
 		end
 
 	end)
-	ThisChoise.MouseButton1Up:Connect(function()
-		CallBack(Value,ChooseMainObject)
+	ThisChoise.MouseButton1Up:Connect(function()-- Làm khi người chơi nhấn vào
+		CallBack(Value,ChooseMainObject) --Gọi một function mà đã cho sẵn
 	end)
 end
 
