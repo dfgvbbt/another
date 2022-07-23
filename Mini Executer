@@ -5,7 +5,7 @@
 
 -- Phần Instances:
 local UIS = game:GetService("UserInputService")
-local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
+local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)-- or nil
 
 local ScreenGui = Instance.new("ScreenGui")
 local Small = Instance.new("Frame")
@@ -258,6 +258,9 @@ local Settings = {
 			OpenTemp = false,
 		},
 	},
+	Small_Gui = {
+		IsHidding = false
+	},
 }
 
 --Làm gui sau c:
@@ -335,6 +338,7 @@ end
 
 
 local function HideGui() --Ẩn Mini executer nhỏ
+	Settings.Small_Gui.IsHidding = true
 	for i,v in pairs(Small:GetChildren()) do --Lấy mấy thằng con của nó để làm gì đó(i là index,v là value;và 'i,v' là tên nên đặt gì cũng dc)
 		if not v:IsA("UICorner") then
 			if v:IsA("ImageButton") then
@@ -357,10 +361,12 @@ local function HideGui() --Ẩn Mini executer nhỏ
 		end
 	end
 	wait(0.7)
-	Small.Visible = false
+	if Settings.Small_Gui.IsHidding == true then Small.Visible = false Settings.Small_Gui.IsHidding = false end
+	
 end
 
 local function ShowGui() 
+	Settings.Small_Gui.IsHidding = false
 	Small.Visible = true
 	for i,v in pairs(Small:GetChildren()) do
 		if not v:IsA("UICorner") then
@@ -430,7 +436,7 @@ local function CreateNewChooseList(ChooseMainObject,Name)
 	end
 
 	local function SetPositionList()
-		ThisList.Position = UDim2.fromOffset(ThisChoise.Position.X.Offset + 200,-(0.5 * (#ThisList:GetChildren() - 2)))
+		ThisList.Position = UDim2.fromOffset(ThisChoise.Position.X.Offset + 205,20 - (20 * (#ThisList:GetChildren() - 2)))
 	end
 	SetPositionList()
 	ThisList.ChildAdded:Connect(SetPositionList)
@@ -659,7 +665,8 @@ spawn(function()
 	local Admin = CreateNewChooseList(ListChoiseFeScript,'Admin List')
 	local Another = CreateNewChooseList(ListChoiseFeScript,'Another')
 	local Character = CreateNewChooseList(ListChoiseFeScript,'Character')
-
+	local idk = CreateNewChooseList(Admin,'HAHAHAHA')
+	
 	CreateNewChoose(MyScript,'List Script','https://github.com/dfgvbbt/Game/raw/main/Tong%20Hop','My List Script Game For The Game I Played :3',Change)
 	CreateNewChoose(Another,'Game Pass Script','https://github.com/dfgvbbt/another/raw/main/GamePass','it\39s give you free gamepass but only work some game',Change)
 	CreateNewChoose(Fling,'Loop Fling All','https://github.com/DigitalityScripts/roblox-scripts/raw/main/loop%20fling%20all','The title says it all, WARNING: SCRIPT ONLY WORK IF YOU CAN TOUCH ANOTHER AND NEED EQUIP RTHO HAT/HEAD',Change)
@@ -670,3 +677,5 @@ spawn(function()
 	CreateNewChoose(Another,'Dark Dex v3','https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua','This script will show all intansce this game have and do somethings to that!',Change)	
 	CreateNewChoose(Character,'Invisiblity',('local removeNametags = false -- remove custom billboardgui nametags from hrp, could trigger anticheat local plr = game:GetService("Players").LocalPlayer local character = plr.Character local hrp = character.HumanoidRootPart local old = hrp.CFrame if not character:FindFirstChild("LowerTorso") or character.PrimaryPart ~= hrp then return print("unsupported") end if removeNametags then local tag = hrp:FindFirstChildOfClass("BillboardGui") if tag then tag:Destroy() end hrp.ChildAdded:Connect(function(item) if item:IsA("BillboardGui") then task.wait() item:Destroy() end end) end local newroot = character.LowerTorso.Root:Clone() hrp.Parent = workspace character.PrimaryPart = hrp character:MoveTo(Vector3.new(old.X,9e9,old.Z)) hrp.Parent = character task.wait(0.5) newroot.Parent = character.LowerTorso hrp.CFrame = old'),'Real invisible :3',ChangeLua)
 end)
+
+
