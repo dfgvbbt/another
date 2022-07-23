@@ -270,7 +270,7 @@ local PlayerSettings = {
 
 
 
-local function Effect_Text(object,text) --Hiện những dòng chữ theo từng chữ
+local function Effect_Text(object,text) 
 	for i = 1 ,#text,1  do
 		object.Text = string.sub(text,1,i)
 		wait()
@@ -295,7 +295,7 @@ local function Mode_Url()
 	Settings.ModeUrlTrans = ModeUrl.Transparency
 end
 
-local function HideNotifi() --Ẩn thông báo
+local function HideNotifi() 
 	if Settings.Notification.IsOpen == true then
 		Services.TweenService:Create(Notification_Gui,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{TextTransparency = 1}):Play()
 		Services.TweenService:Create(UIStroke,TweenInfo.new(1,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{Transparency = 1}):Play()
@@ -304,7 +304,7 @@ local function HideNotifi() --Ẩn thông báo
 	end
 end
 
-local function ShowNotifi(texts,timeleft) --Hiện thông báo bằng gui khi có việc gì đó
+local function ShowNotifi(texts,timeleft) 
 	--timeleft ko bat buoc
 	local posmouse = UIS:GetMouseLocation() -- Lấy vị trí chuột trên màn hình
 	if Notification_Gui.BackgroundTransparency >= 0 and Settings.Notification.IsOpen == false then
@@ -358,7 +358,7 @@ local function HideGui() --Ẩn Mini executer nhỏ
 	end
 end
 
-local function ShowGui() -- ẩn small mini executer
+local function ShowGui() 
 	for i,v in pairs(Small:GetChildren()) do
 		if not v:IsA("UICorner") then
 
@@ -387,26 +387,26 @@ local function ShowGui() -- ẩn small mini executer
 end
 
 
-local function CreateNewChoose(ChooseMainObject,Name,Value,Desc,CallBack) --Tạo câu trả lời cho cái kia
-	local ThisChoise = ChooseMainObject.Chooser:Clone() --Tạo câu trả lời
+local function CreateNewChoose(ChooseMainObject,Name,Value,Desc,CallBack) 
+	local ThisChoise = ChooseMainObject.Chooser:Clone()
 	ThisChoise.Visible = true --Làm câu trả lời có thể nhìn được
-	ThisChoise.Parent = ChooseMainObject --Để câu hổi trong cái kia vì thường clone sẽ chuyễn parent
+	ThisChoise.Parent = ChooseMainObject 
 	ThisChoise.Name = Name -- Chỉnh tên
 	ThisChoise.Text = Name -- Chỉnh chữ để nhìn
-	ThisChoise.MouseEnter:Connect(function() --Làm gì đó khi chuột để vào câu trả lời
+	ThisChoise.MouseEnter:Connect(function() 
 		ThisChoise.BackgroundTransparency = 0.85
 		if Settings.Notification.IsOpen == false then
 			ShowNotifi(Desc)
 		end
 	end)
-	ThisChoise.MouseLeave:Connect(function() -- Như trên nhưng ngược lại
+	ThisChoise.MouseLeave:Connect(function() 
 		ThisChoise.BackgroundTransparency = 1
 		if Settings.Notification.IsOpen == true then
 			HideNotifi()
 		end
 
 	end)
-	ThisChoise.MouseButton1Up:Connect(function()-- Làm khi người chơi nhấn vào
+	ThisChoise.MouseButton1Up:Connect(function() --làm khi nhấn chuột trái
 		CallBack(Value,ChooseMainObject) --Gọi một function mà đã cho sẵn
 	end)
 end
