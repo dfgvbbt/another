@@ -356,12 +356,14 @@ local function HideGui() --Ẩn Mini executer nhỏ
 			tween:Play()
 		end
 	end
+	wait(0.7)
+	Small.Visible = false
 end
 
 local function ShowGui() 
+	Small.Visible = true
 	for i,v in pairs(Small:GetChildren()) do
 		if not v:IsA("UICorner") then
-
 			if v:IsA("ImageButton") then
 				game:GetService("TweenService"):Create(v,TweenInfo.new(0.5,Enum.EasingStyle.Quart,Enum.EasingDirection.Out),{ImageTransparency = 0}):Play()
 			elseif v:IsA("TextBox") then
