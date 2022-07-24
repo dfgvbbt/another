@@ -676,7 +676,7 @@ spawn(function()
 	CreateNewChoose(Another,'Fps Boost','https://pastebin.com/raw/x3PMUeuE','Fps Boost for...ummmm, ye...',Change)
 	CreateNewChoose(Another,'Dark Dex v3','https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua','This script will show all intansce this game have and do somethings to that!',Change)	
 	CreateNewChoose(Character,'Invisiblity',('local removeNametags = false -- remove custom billboardgui nametags from hrp, could trigger anticheat local plr = game:GetService("Players").LocalPlayer local character = plr.Character local hrp = character.HumanoidRootPart local old = hrp.CFrame if not character:FindFirstChild("LowerTorso") or character.PrimaryPart ~= hrp then return print("unsupported") end if removeNametags then local tag = hrp:FindFirstChildOfClass("BillboardGui") if tag then tag:Destroy() end hrp.ChildAdded:Connect(function(item) if item:IsA("BillboardGui") then task.wait() item:Destroy() end end) end local newroot = character.LowerTorso.Root:Clone() hrp.Parent = workspace character.PrimaryPart = hrp character:MoveTo(Vector3.new(old.X,9e9,old.Z)) hrp.Parent = character task.wait(0.5) newroot.Parent = character.LowerTorso hrp.CFrame = old'),'Real invisible :3',ChangeLua)
-	CreateNewChoose(Character,'Lag Switcher','loadstring(game:HttpGet("https://paste.gg/p/anonymous/d3492bd620bd4c46b54680ac80b0fa0d/files/161ddd9c992c4ceba3c298458d45188a/raw", true))()','Lag switcher for r15?',ChangeLua)
+	CreateNewChoose(Character,'Lag Switcher(X)','loadstring(game:HttpGet("https://paste.gg/p/anonymous/d3492bd620bd4c46b54680ac80b0fa0d/files/161ddd9c992c4ceba3c298458d45188a/raw", true))()','Lag switcher for r15?',ChangeLua)
 end)
 
 
