@@ -276,6 +276,7 @@ local PlayerSettings = {
 local function Effect_Text(object,text) 
 	for i = 1 ,#text,1  do
 		object.Text = string.sub(text,1,i)
+		task.wait()
 	end
 end
 
