@@ -1,7 +1,11 @@
+--[[Phần Lưu ý
+CHỈ XÀI ĐC KHI CÓ 'UIGRADIENT' VÀ NẾU LÀ TEXTLABEL THÌ CHỮ PHẢI MÀU TRẮNG
+
+]]
 local RS = game:GetService("RunService")
 
-local rainbow = script.Parent 
-local grad = rainbow.UIGradient
+local rainbow = script.Parent
+local grad = rainbow.UIGradient or Intansce.new('UIGradient').Parent = rainbow --Quang trọng
 
 local counter = 0       
 local w = math.pi / 6 
