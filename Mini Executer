@@ -660,7 +660,7 @@ spawn(function()
 	end
 	local function ChangeL(v,Parent) --Test
 		if BoxLua.Visible == true then
-			BoxLua.Text = tostring(loadstring(game:HttpGet(v))--[[()]])
+			BoxLua.Text = tostring(loadstring(game:HttpGet(v))())
 		end
 		if BoxUrl.Visible == true then
 			BoxUrl.Text = v
