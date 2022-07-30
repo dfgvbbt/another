@@ -1,0 +1,14 @@
+--Chỉ sài dc khi có color3 :)
+
+function zigzag(X) return math.acos(math.cos(X*math.pi))/math.pi end
+
+counter = 0
+
+
+
+while wait(0.1)do
+	script.Parent.Color = Color3.fromHSV(zigzag(counter),1,1)
+	script.Parent.Parent.Avatar.Frame.UIStroke.Color = Color3.fromHSV(zigzag(counter),1,1)
+
+	counter = counter + 0.001
+end
