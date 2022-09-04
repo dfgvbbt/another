@@ -25,16 +25,19 @@ do
 end
 
 local function Doing(child:Instance)
-	local Part = child:WaitForChild('TouchTrigger')
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,0)
-	task.wait()
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,1)
-	task.spawn(function()
-		local Part = workspace:WaitForChild('GroupBuildStructures'):FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
+	pcall(function()
+		local Part = child:WaitForChild('TouchTrigger')
 		firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,0)
 		task.wait()
 		firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,1)
+		task.spawn(function()
+			local Part = workspace:WaitForChild('GroupBuildStructures'):FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
+			firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,0)
+			task.wait()
+			firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,1)
+		end)
 	end)
+	
 end
 
 workspace.ChildAdded:Connect(function(child)
