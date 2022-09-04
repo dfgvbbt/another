@@ -4,7 +4,7 @@ local All_Items_Name = {
 	['Fuse'] = true,
 	['Battery'] = true,
 }
-
+print('Thanks!')
 --Block.TouchTrigger.TouchInterest
 --workspace.GroupBuildStructures.BlockTower.Trigger.TouchInterest
 local firetouchinterest
