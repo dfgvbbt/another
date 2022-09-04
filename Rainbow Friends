@@ -14,14 +14,13 @@ local touched
 
 do
 	
-	firetouchinterest = function(part1:Part, part2:Part, toggle:number)
+	firetouchinterest = function(part1:Part, part2:Part)
 		if (part1 and part2) then
-			if toggle == 0 then
-				touched = part1.CFrame
-				part1.CFrame = part2.CFrame
-			else
-				part1.CFrame = touched
-			end
+			touched = part1.CFrame
+			part1.CFrame = part2.CFrame
+			wait()
+			part1.CFrame = touched
+			touched = nil
 		end
 	end
 end
@@ -29,12 +28,8 @@ end
 local function Doing(child:Instance)
 	local Part = child:WaitForChild('TouchTrigger')
 	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,0)
-	wait()
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,1)
 	Part = workspace:WaitForChild('GroupBuildStructures'):FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,0)
-	wait()
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,1)
+	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part)
 	
 end
 
