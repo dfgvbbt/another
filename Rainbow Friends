@@ -50,7 +50,7 @@ local function Doing(child:Instance,ThisMode:string)
 		print(child:GetFullName())
 		FireAll()
 		wait()
-		if IsHave == false or CurrentMode == '' then break end
+		if IsHave == false or CurrentMode == '' then print('break!') break end
 		print('Not yet :(')
 	until IsHave == false
 	print('Yet!')
