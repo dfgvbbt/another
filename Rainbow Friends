@@ -20,7 +20,6 @@ do
 			part1.CFrame = part2.CFrame
 			wait()
 			part1.CFrame = touched
-			touched = nil
 		end
 	end
 end
