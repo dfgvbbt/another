@@ -18,7 +18,7 @@ do
 				touched = part1.CFrame
 				part1.CFrame = part2.CFrame
 			else
-				part1.CFrame = touched[1]
+				part1.CFrame = touched
 				touched = nil
 			end
 		end
