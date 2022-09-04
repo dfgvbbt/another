@@ -11,15 +11,15 @@ local All_Items_Name = {
 local firetouchinterest
 
 do
-	local touched = {}
+	local touched
 	firetouchinterest = function(part1:Part, part2:Part, toggle:number)
 		if (part1 and part2) then
 			if toggle == 0 then
-				touched[1] = part1.CFrame
+				touched = part1.CFrame
 				part1.CFrame = part2.CFrame
 			else
 				part1.CFrame = touched[1]
-				touched[1] = nil
+				touched = nil
 			end
 		end
 	end
