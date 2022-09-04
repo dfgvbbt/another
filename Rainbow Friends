@@ -10,8 +10,10 @@ local All_Items_Name = {
 --workspace.GroupBuildStructures.BlockTower.Trigger.TouchInterest
 local firetouchinterest
 
+local touched
+
 do
-	local touched
+	
 	firetouchinterest = function(part1:Part, part2:Part, toggle:number)
 		if (part1 and part2) then
 			if toggle == 0 then
