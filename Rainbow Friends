@@ -1,4 +1,3 @@
-print('Thanks')
 local All_Items_Name = {
 	['Block'] = true,
 	['Food'] = true,
@@ -10,36 +9,63 @@ local All_Items_Name = {
 --workspace.GroupBuildStructures.BlockTower.Trigger.TouchInterest
 local firetouchinterest
 
-local touched
-
 do
-	
-	firetouchinterest = function(part1:Part, part2:Part)
+	local GEnv = getgenv();
+	local touched
+	firetouchinterest = GEnv.firetouchinterest or function(part1, part2, toggle)
 		if (part1 and part2) then
-			touched = part1.CFrame
-			part1.CFrame = part2.CFrame
-			wait()
-			part1.CFrame = touched
+			if (toggle == 0) then
+				touched = part1.CFrame
+				part1.CFrame = part2.CFrame
+			else
+				part1.CFrame = touched
+				touched = nil
+			end
 		end
 	end
 end
 
-local function Doing(child:Instance)
-	local Part = child:WaitForChild('TouchTrigger')
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,0)
-	Part = workspace:WaitForChild('GroupBuildStructures'):FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part)
-	
+local CurrentMode = ''
+
+local function FireAll()
+	for i, v:Instance in pairs(workspace:GetDescendants()) do
+		if v:IsA('TouchTransmitter') then
+			firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v.Parent, 0);
+			wait();
+			firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v.Parent, 1);
+		end
+	end
 end
+
+local function Doing(child:Instance,ThisMode:string)
+	if CurrentMode == ThisMode then
+		return ThisMode
+	end
+	CurrentMode = ThisMode
+	repeat
+		local IsHave = pcall(function()
+			loadstring('return '..child:GetFullName())()
+		end)
+		FireAll()
+		wait()
+	until IsHave == false
+	local l:Instance = workspace.GroupBuildStructures:FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
+	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,0)
+	wait();
+	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),nil,1)
+	CurrentMode = ''
+end
+
 
 workspace.ChildAdded:Connect(function(child)
 	if child:IsA('Model') then
 		if All_Items_Name[child.Name] ~= nil then
-			Doing(child)
+			Doing(child,child.Name)
 		else
+			
 			for Name,v in pairs(All_Items_Name) do
 				if string.match(child.Name,Name) then
-					Doing(child)
+					Doing(child,Name)
 				end
 			end
 		end
