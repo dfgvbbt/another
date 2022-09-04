@@ -44,7 +44,7 @@ local function Doing(child:Instance,ThisMode:string)
 	
 	CurrentMode = ThisMode
 	repeat
-		local IsHave = pcall(function()
+		local IsHave,_ = pcall(function()
 			loadstring('return '..child:GetFullName())()
 		end)
 		print(child:GetFullName())
