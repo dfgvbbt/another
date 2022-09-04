@@ -53,6 +53,7 @@ local function Doing(child:Instance,ThisMode:string)
 		if IsHave == false or CurrentMode == '' then break end
 		print('Not yet :(')
 	until IsHave == false
+	print('Yet!')
 	local l:Instance = workspace.GroupBuildStructures:FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
 	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,0)
 	wait();
