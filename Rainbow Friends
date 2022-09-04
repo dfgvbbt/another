@@ -1,0 +1,54 @@
+local All_Items_Name = {
+	['Block'] = true,
+	['Food'] = true,
+	['Fuse'] = true,
+	['Battery'] = true,
+}
+
+--Block.TouchTrigger.TouchInterest
+--workspace.GroupBuildStructures.BlockTower.Trigger.TouchInterest
+local firetouchinterest
+
+do
+	local touched = {}
+	firetouchinterest = function(part1:Part, part2:Part, toggle:number)
+		if (part1 and part2) then
+			if toggle == 0 then
+				touched[1] = part1.CFrame
+				part1.CFrame = part2.CFrame
+			else
+				part1.CFrame = touched[1]
+				touched[1] = nil
+			end
+		end
+	end
+end
+
+local function Doing(child:Instance)
+	local Part = child:WaitForChild('TouchTrigger')
+	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,0)
+	task.wait()
+	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,1)
+	task.spawn(function()
+		wait(.2)
+		local Part = workspace:WaitForChild('GroupBuildStructures'):FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
+		firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,0)
+		task.wait()
+		firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,1)
+	end)
+end
+
+workspace.ChildAdded:Connect(function(child)
+	if child:IsA('Model') then
+		if All_Items_Name[child.Name] ~= nil then
+			Doing(child)
+		else
+			for Name,v in pairs(All_Items_Name) do
+				if string.match(child.Name,Name) then
+					Doing(child)
+				end
+			end
+		end
+		
+	end
+end)
