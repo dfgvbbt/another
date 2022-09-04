@@ -27,11 +27,11 @@ end
 local function Doing(child:Instance)
 	local Part = child:WaitForChild('TouchTrigger')
 	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,0)
-	wait()
+	
 	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,1)
 	local Part = workspace:WaitForChild('GroupBuildStructures'):FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
 	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,0)
-	wait()
+	
 	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),Part,1)
 	
 end
