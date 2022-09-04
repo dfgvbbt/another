@@ -47,6 +47,7 @@ local function Doing(child:Instance,ThisMode:string)
 		local IsHave,_ = pcall(function()
 			loadstring('return '..child:GetFullName())()
 		end)
+		print(IsHave)
 		print(child:GetFullName())
 		FireAll()
 		wait()
@@ -63,7 +64,7 @@ end
 
 
 workspace.ChildAdded:Connect(function(child)
-	if child.Name == 'Purple_ArmIdle' then return child:Destroy() end
+	if child.Name == 'Purple_ArmIdle' then wait() return child:Destroy() end
 	if child:IsA('Model') then
 		if All_Items_Name[child.Name] ~= nil then
 			Doing(child,child.Name)
