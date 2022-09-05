@@ -5,6 +5,7 @@ local All_Items_Name = {
 	['Battery'] = true,
 }
 print('Thanks!')
+game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").WalkSpeed = 25
 --Block.TouchTrigger.TouchInterest
 --workspace.GroupBuildStructures.BlockTower.Trigger.TouchInterest
 local firetouchinterest
