@@ -61,7 +61,7 @@ local function Doing(child:Instance,ThisMode:string)
 	local l:Instance = workspace.GroupBuildStructures:FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
 	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,0)
 	wait();
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),nil,1)
+	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,1)
 	CurrentMode = ''
 end
 
