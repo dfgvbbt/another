@@ -95,17 +95,17 @@ do
 			ModeTexts.Text = 'Auto '..Mode
 			ImageButton.Image = FarmImage.Value
 			writefile('dfgvbbt\\Rainbow Friends.lua','Farm')
-		elseif Mode == 'Farm' then
-			Mode = 'Items'
-			ModeTexts.Text = 'Auto '..Mode
-			ImageButton.Image = ItemsImage.Value
-			writefile('dfgvbbt\\Rainbow Friends.lua','Items')
-			if Mode == 'Farm' and game.PlaceId == 7991339063 then
+			if game.PlaceId == 7991339063 then
 				repeat
 					game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = workspace.testblock.CFrame
 					task.wait(.5)
 				until Mode == 'Items'
 			end
+		elseif Mode == 'Farm' then
+			Mode = 'Items'
+			ModeTexts.Text = 'Auto '..Mode
+			ImageButton.Image = ItemsImage.Value
+			writefile('dfgvbbt\\Rainbow Friends.lua','Items')
 		end
 	end)
 end
