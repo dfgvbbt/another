@@ -47,7 +47,7 @@ local function Doing(child:Instance,ThisMode:string)
 	repeat
 		AmoutLoop += 1
 		local IsHave,_ = pcall(function()
-			loadstring('return workspace.'..child:GetFullName())()
+			loadstring('return workspace.'..child.Name)()
 		end)
 		print(IsHave)
 		print(child:GetFullName())
