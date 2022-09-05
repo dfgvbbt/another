@@ -43,7 +43,9 @@ local function Doing(child:Instance,ThisMode:string)
 	end
 	
 	CurrentMode = ThisMode
+	local AmoutLoop = 0
 	repeat
+		AmoutLoop += 1
 		local IsHave,_ = pcall(function()
 			loadstring('return '..child:GetFullName())()
 		end)
@@ -51,6 +53,7 @@ local function Doing(child:Instance,ThisMode:string)
 		print(child:GetFullName())
 		FireAll()
 		wait()
+		if AmoutLoop >= 3 then break end
 		if IsHave == false or CurrentMode == '' then print('break!') break end
 		print('Not yet :(')
 	until IsHave == false
