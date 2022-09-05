@@ -85,6 +85,6 @@ workspace.ChildAdded:Connect(function(child)
 	end
 end)
 workspace.Map_Finale.BalloonObstaclesFindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
-	task.wait(0.5)
+	task.wait(0.1)
 	FireAll()
 end)
