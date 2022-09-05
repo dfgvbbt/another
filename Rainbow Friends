@@ -103,12 +103,7 @@ do
 		until Mode == 'Items'
 	end
 	wait()
-	game.Players.LocalPlayer.PlayerGui.PermanentGUI:WaitForChild(DeathFrame,1000):GetPropertyChangedSignal('Visible'):Connect(function()
-		if game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Visible == true and game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Title.Text ~= 'loading???' and Mode == 'Farm' then
-			local tp = game:GetService('TeleportService')
-			tp:Teleport(7991339063)
-		end
-	end)
+	
 	
 	ImageButton.MouseButton1Up:Connect(function()
 		if Mode == 'Items' then
@@ -239,6 +234,13 @@ pcall(function()
 	workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
 		task.wait(0.1)
 		FireAll() --Just pop all ballons in final rounds for fun c:
+	end)
+	
+	game.Players.LocalPlayer.PlayerGui.PermanentGUI:WaitForChild(DeathFrame,1000):GetPropertyChangedSignal('Visible'):Connect(function()
+		if game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Visible == true and game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Title.Text ~= 'loading???' and Mode == 'Farm' then
+			local tp = game:GetService('TeleportService')
+			tp:Teleport(7991339063)
+		end
 	end)
 end)
 
