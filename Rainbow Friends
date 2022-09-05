@@ -61,7 +61,7 @@ do
 
 	end]]
 	
-	local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport) or nil
+	local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)-- or nil
 
 	local IsHaveSet,Mode = pcall(function()
 		return readfile('dfgvbbt\\Rainbow Friends.lua')
@@ -82,7 +82,7 @@ do
 	
 	game.Players.LocalPlayer.OnTeleport:Connect(function(IState)
 		if IState.Value == Enum.TeleportState.Started then
-			if Mode == 'Farm' and queueteleport ~= nil then
+			if Mode == 'Farm' and queueteleport then
 				print('Player Teleporting!')
 				queueteleport("loadstring(game:HttpGet('https://github.com/dfgvbbt/another/raw/main/Rainbow%20Friends'))()")
 			end
