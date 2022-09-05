@@ -55,6 +55,7 @@ do
 	ModeTexts.TextScaled = true
 	ModeTexts.TextSize = 14.000
 	ModeTexts.TextWrapped = true
+	ModeTexts.Active = false
 
 	AutoFitMode.Name = "AutoFitMode"
 	AutoFitMode.Parent = ModeTexts
