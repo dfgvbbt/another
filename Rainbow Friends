@@ -111,12 +111,12 @@ do
 		if Mode == 'Items' then
 			Mode = 'Farm'
 			ModeTexts.Text = 'Auto '..Mode
-			ImageButton.Image = FarmImage
+			ImageButton.Image = FarmImage.Value
 			writefile('dfgvbbt\\Rainbow Friends.lua','Farm')
 		elseif Mode == 'Farm' then
 			Mode = 'Items'
 			ModeTexts.Text = 'Auto '..Mode
-			ImageButton.Image = ItemsImage
+			ImageButton.Image = ItemsImage.Value
 			writefile('dfgvbbt\\Rainbow Friends.lua','Items')
 		end
 	end)
