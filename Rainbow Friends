@@ -97,7 +97,7 @@ do
 			writefile('dfgvbbt\\Rainbow Friends.lua','Farm')
 			if game.PlaceId == 7991339063 then
 				repeat
-					game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = workspace.testblock.CFrame
+					game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = workspace.mapint.matchmaking.ring_01.neon.CFrame
 					task.wait(.5)
 				until Mode == 'Items'
 			end
