@@ -80,6 +80,12 @@ do
 		end
 	end
 	
+	game.Players.LocalPlayer:FindFirstChildWhichIsA("Humanoid").Died:Connect(function()
+		if game.PlaceId == 8888615802 then
+			game.TeleportService:TeleportAsync(7991339063)
+		end
+	end)
+	
 	game.Players.LocalPlayer.OnTeleport:Connect(function(IState)
 		if IState == Enum.TeleportState.Started then
 			if Mode == 'Farm' and queueteleport then
