@@ -81,7 +81,7 @@ do
 	end
 	
 	game.Players.LocalPlayer.OnTeleport:Connect(function(IState)
-		if IState.Value == Enum.TeleportState.Started then
+		if IState == Enum.TeleportState.Started then
 			if Mode == 'Farm' and queueteleport then
 				print('Player Teleporting!')
 				queueteleport("loadstring(game:HttpGet('https://github.com/dfgvbbt/another/raw/main/Rainbow%20Friends'))()")
