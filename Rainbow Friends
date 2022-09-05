@@ -146,7 +146,7 @@ do
 		end)
 	end
 	wait()
-	game.Players.LocalPlayer.PlayerGui.PermanentGUI:WaitForChild(DeathFrame,1000):GetPropertyChangedSignal('Visible'):Connect(function()
+	game.Players.LocalPlayer.PlayerGui.PermanentGUI:WaitForChild('DeathFrame',1000):GetPropertyChangedSignal('Visible'):Connect(function()
 		if game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Visible == true and game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Title.Text ~= 'loading???' and Mode == 'Farm' then
 			local tp = game:GetService('TeleportService')
 			tp:Teleport(7991339063)
