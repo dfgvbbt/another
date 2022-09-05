@@ -86,6 +86,7 @@ do
 	local IsHaveSet,Mode = pcall(function()
 		return readfile('dfgvbbt\\Rainbow Friends.lua')
 	end)
+	print(Mode)
 	if IsHaveSet == false then
 		makefolder('dfgvbbt')
 		writefile('dfgvbbt\\Rainbow Friends.lua','"Items"')
