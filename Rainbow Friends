@@ -136,7 +136,8 @@ end)
 
 game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):GetPropertyChangedSignal('Health'):Connect(function()
 	if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').Health < 100  then
-		game:GetService('TeleportService'):Teleport(game.TeleportService,7991339063)
+		local tp = game:GetService('TeleportService')
+		tp:Teleport(7991339063)
 	end
 end)
 
