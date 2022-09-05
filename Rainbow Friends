@@ -5,10 +5,122 @@ local All_Items_Name = {
 	['Battery'] = true,
 }
 print('Thanks!')
+
 game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").WalkSpeed = 25
+
+game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):GetPropertyChangedSignal('WalkSpeed'):Connect(function()
+	if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed < 25  then
+		game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed = 25
+	end
+end)
 --Block.TouchTrigger.TouchInterest
 --workspace.GroupBuildStructures.BlockTower.Trigger.TouchInterest
 local firetouchinterest
+
+
+do
+	-- Gui to Lua
+
+	local Choose = Instance.new("ScreenGui")
+	local ImageButton = Instance.new("ImageButton")
+	local ModeTexts = Instance.new("TextLabel")
+	local AutoFitMode = Instance.new("UITextSizeConstraint")
+	local ItemsImage = Instance.new('StringValue')
+	local FarmImage = Instance.new('StringValue')
+
+	--Properties:
+
+	Choose.Name = "Choose"
+	Choose.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	Choose.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	Choose.ResetOnSpawn = false
+
+	ImageButton.Parent = Choose
+	ImageButton.Active = false
+	ImageButton.AnchorPoint = Vector2.new(0.5, 1)
+	ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ImageButton.BackgroundTransparency = 1.000
+	ImageButton.Position = UDim2.new(0.5, 0, 1, 0)
+	ImageButton.Size = UDim2.new(0.1, 0, 0.0483936593, 0)
+	ImageButton.Image = ""
+
+	ModeTexts.Name = "ModeTexts"
+	ModeTexts.Parent = ImageButton
+	ModeTexts.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ModeTexts.BackgroundTransparency = 1.000
+	ModeTexts.Size = UDim2.new(0, 108, 0, 24)
+	ModeTexts.Font = Enum.Font.SourceSans
+	ModeTexts.Text = "Auto Items"
+	ModeTexts.TextColor3 = Color3.fromRGB(0, 0, 0)
+	ModeTexts.TextScaled = true
+	ModeTexts.TextSize = 14.000
+	ModeTexts.TextWrapped = true
+
+	AutoFitMode.Name = "AutoFitMode"
+	AutoFitMode.Parent = ModeTexts
+	AutoFitMode.MaxTextSize = 14
+
+	ItemsImage.Name = 'ItemsImage'
+	ItemsImage.Value = 'rbxassetid://10518145166'
+
+	FarmImage.Name = 'FarmImage'
+	ItemsImage.Value = 'rbxassetid://4688175775'
+
+	
+	
+	--[[local function readfile(Name)
+
+	end
+
+	local function makefolder(Name)
+
+	end
+
+	local function writefile(Name,Value)
+
+	end]]
+	
+	local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport) or nil
+
+	local IsHaveSet,Mode = pcall(function()
+		return readfile('dfgvbbt\\Rainbow Friends.lua')
+	end)
+	if IsHaveSet == false then
+		makefolder('dfgvbbt')
+		writefile('dfgvbbt\\Rainbow Friends.lua','"Items"')
+		Mode = 'Items'
+		ModeTexts.Text = 'Auto '..Mode
+	else
+		if Mode == 'Items' or Mode == 'Farm' then
+			ModeTexts.Text = 'Auto '..Mode
+		else
+			writefile('dfgvbbt\\Rainbow Friends.lua','"Items"')
+		end
+	end
+	
+	game.Players.LocalPlayer.OnTeleport:Connect(function(state)
+		if state.Value == Enum.TeleportState.Started then
+			if Mode == 'Farm' and queueteleport ~= nil then
+				print('Player Teleporting!')
+				queueteleport("loadstring(game:HttpGet('https://github.com/dfgvbbt/another/raw/main/Rainbow%20Friends'))()")
+			end
+		end
+	end)
+	
+	ImageButton.MouseButton1Up:Connect(function()
+		if Mode == 'Items' then
+			Mode = 'Farm'
+			ModeTexts.Text = 'Auto '..Mode
+			ImageButton.Image = FarmImage
+			writefile('dfgvbbt\\Rainbow Friends.lua','Farm')
+		elseif Mode == 'Farm' then
+			Mode = 'Items'
+			ModeTexts.Text = 'Auto '..Mode
+			ImageButton.Image = ItemsImage
+			writefile('dfgvbbt\\Rainbow Friends.lua','Items')
+		end
+	end)
+end
 
 do
 	local GEnv = getgenv();
@@ -42,7 +154,7 @@ local function Doing(child:Instance,ThisMode:string)
 	if CurrentMode == ThisMode then
 		return ThisMode
 	end
-	
+
 	CurrentMode = ThisMode
 	local AmoutLoop = 0
 	repeat
@@ -82,12 +194,14 @@ workspace.ChildAdded:Connect(function(child)
 				end
 			end
 		end
-		
+
 	end
 end)
+
 pcall(function()
 	workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
 		task.wait(0.1)
 		FireAll() --Just poop ballons :)
 	end)
 end)
+
