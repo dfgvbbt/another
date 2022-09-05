@@ -124,9 +124,35 @@ do
 			writefile('dfgvbbt\\Rainbow Friends.lua','Items')
 		end
 	end)
+	do
+		local LastCFrame = game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame
+		game.Players.LocalPlayer.PlayerGui.PermanentGUI.ChildAdded:Connect(function(child)
+			if child.Name == 'FinaleChaseMusic' then --Boss Running To You
+				game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = workspace.GroupBuildStructures.TicketMachine.Union.CFrame --Im Not Make Sure Where Is Safle Place
+				game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').Anchored = true --Freeze Yourself
+			elseif child.Name == 'Victory' then
+				if Mode == 'Farm' then
+					local tp = game:GetService('TeleportService')
+					tp:Teleport(7991339063)
+				else
+					game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').Anchored = false
+					game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = LastCFrame
+				end
+				
+			end
+		end)
+	end
+	wait()
+	game.Players.LocalPlayer.PlayerGui.PermanentGUI:WaitForChild(DeathFrame,1000):GetPropertyChangedSignal('Visible'):Connect(function()
+		if game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Visible == true and game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Title.Text ~= 'loading???' and Mode == 'Farm' then
+			local tp = game:GetService('TeleportService')
+			tp:Teleport(7991339063)
+		end
+	end)
+	
 end
 
---Main Script Is Here,Upper Is Just A Gui To Make Player Can Setting Mode
+--Main Script Is Here,Upper Is Just A Gui To Make Player Can Setting Mode And Something For Auto Farm Mode
 local All_Items_Name = {
 	['Block'] = true,
 	['Food'] = true,
@@ -236,11 +262,7 @@ pcall(function()
 		FireAll() --Just pop all ballons in final rounds for fun c:
 	end)
 	
-	game.Players.LocalPlayer.PlayerGui.PermanentGUI:WaitForChild(DeathFrame,1000):GetPropertyChangedSignal('Visible'):Connect(function()
-		if game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Visible == true and game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Title.Text ~= 'loading???' and Mode == 'Farm' then
-			local tp = game:GetService('TeleportService')
-			tp:Teleport(7991339063)
-		end
-	end)
+	
+	
 end)
 
