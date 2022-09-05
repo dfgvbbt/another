@@ -84,7 +84,9 @@ workspace.ChildAdded:Connect(function(child)
 		
 	end
 end)
-workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
-	task.wait(0.1)
-	FireAll()
+pcall(function()
+	workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
+		task.wait(0.1)
+		FireAll() --Just poop ballons :)
+	end)
 end)
