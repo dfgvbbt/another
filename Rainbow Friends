@@ -89,14 +89,14 @@ do
 	print(Mode)
 	if IsHaveSet == false then
 		makefolder('dfgvbbt')
-		writefile('dfgvbbt\\Rainbow Friends.lua','"Items"')
+		writefile('dfgvbbt\\Rainbow Friends.lua','Items')
 		Mode = 'Items'
 		ModeTexts.Text = 'Auto '..Mode
 	else
 		if Mode == 'Items' or Mode == 'Farm' then
 			ModeTexts.Text = 'Auto '..Mode
 		else
-			writefile('dfgvbbt\\Rainbow Friends.lua','"Items"')
+			writefile('dfgvbbt\\Rainbow Friends.lua','Items')
 		end
 	end
 	
