@@ -209,7 +209,7 @@ end)
 pcall(function()
 	workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
 		task.wait(0.1)
-		FireAll() --Just poop ballons :)
+		FireAll()
 	end)
 end)
 
