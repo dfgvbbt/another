@@ -126,20 +126,17 @@ do
 		end
 	end)
 	do
-		local LastCFrame = game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame
+		
 		game.Players.LocalPlayer.PlayerGui.PermanentGUI.ChildAdded:Connect(function(child)
-			if child.Name == 'FinaleChaseMusic' then --Boss Running To You
-				game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = workspace.GroupBuildStructures.TicketMachine.Union.CFrame --Im Not Make Sure Where Is Safle Place
-				game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').Anchored = true --Freeze Yourself
+			if child.Name == 'FinaleChaseMusic' then --Boss Running To You,No Ideas :(
+				
 			elseif child.Name == 'Victory' then
 				if Mode == 'Farm' then
 					--Auto Farm,So this will teleport player to lobby
 					local tp = game:GetService('TeleportService')
 					tp:Teleport(7991339063)
 				else
-					--Take Player Back To Old Position
-					game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').Anchored = false
-					game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = LastCFrame
+					--No Ideas :(
 				end
 				
 			end
