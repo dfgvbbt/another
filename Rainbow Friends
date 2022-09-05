@@ -53,7 +53,7 @@ local function Doing(child:Instance,ThisMode:string)
 		print(child:GetFullName())
 		FireAll()
 		wait()
-		if AmoutLoop >= 4 then AmoutLoop = 0 break end
+		if AmoutLoop >= 10 then AmoutLoop = 0 break end
 		if IsHave == false or CurrentMode == '' then print('break!') break end
 		print('Not yet :(')
 	until IsHave == false
