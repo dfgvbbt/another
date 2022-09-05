@@ -1,3 +1,10 @@
+--[[Make Sure Execute Script Before The Game Staring :D
+This Script Have 2 Modes:
+{Items} pick up all items when it spawn
+{Farm} auto left game when die,auto join game when lobby and "pick up all items when it spawn" :)
+
+Im not do the auto win final night yet :V
+]]
 do
 	-- Gui to Lua
 
@@ -96,7 +103,7 @@ do
 		until Mode == 'Items'
 	end
 	wait()
-	game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame:GetPropertyChangedSignal('Visible'):Connect(function()
+	game.Players.LocalPlayer.PlayerGui.PermanentGUI:WaitForChild(DeathFrame,1000):GetPropertyChangedSignal('Visible'):Connect(function()
 		if game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Visible == true and game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Title.Text ~= 'loading???' and Mode == 'Farm' then
 			local tp = game:GetService('TeleportService')
 			tp:Teleport(7991339063)
@@ -231,7 +238,7 @@ end)
 pcall(function()
 	workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
 		task.wait(0.1)
-		FireAll()
+		FireAll() --Just pop all ballons in final rounds for fun c:
 	end)
 end)
 
