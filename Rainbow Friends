@@ -84,3 +84,4 @@ workspace.ChildAdded:Connect(function(child)
 		
 	end
 end)
+--workspace.Map_Finale.BalloonObstaclesFindFirstChildWhichIsA('MeshPart')
