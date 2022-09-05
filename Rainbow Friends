@@ -54,8 +54,8 @@ do
 	FarmImage.Name = 'FarmImage'
 	ItemsImage.Value = 'rbxassetid://4688175775'
 
-	
-	
+
+
 	--[[local function readfile(Name)
 
 	end
@@ -67,7 +67,7 @@ do
 	local function writefile(Name,Value)
 
 	end]]
-	
+
 	local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)-- or nil
 
 	local IsHaveSet,Mode = pcall(function()
@@ -86,7 +86,7 @@ do
 			writefile('dfgvbbt\\Rainbow Friends.lua','Items')
 		end
 	end
-	
+
 	game.Players.LocalPlayer.OnTeleport:Connect(function(IState)
 		if IState == Enum.TeleportState.Started then
 			if Mode == 'Farm' and queueteleport then
@@ -96,7 +96,7 @@ do
 			end
 		end
 	end)
-	
+
 	if game.PlaceId == 7991339063 and Mode == 'Farm' then
 		repeat
 			game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = workspace.mapint.matchmaking.ring_01.neon.CFrame
@@ -104,8 +104,8 @@ do
 		until Mode == 'Items'
 	end
 	wait()
-	
-	
+
+
 	ImageButton.MouseButton1Up:Connect(function()
 		if Mode == 'Items' then
 			Mode = 'Farm'
@@ -126,10 +126,10 @@ do
 		end
 	end)
 	do
-		
+
 		game.Players.LocalPlayer.PlayerGui.PermanentGUI.ChildAdded:Connect(function(child)
 			if child.Name == 'FinaleChaseMusic' then --Boss Running To You,No Ideas :(
-				
+
 			elseif child.Name == 'Victory' then
 				if Mode == 'Farm' then
 					--Auto Farm,So this will teleport player to lobby
@@ -138,7 +138,7 @@ do
 				else
 					--No Ideas :(
 				end
-				
+
 			end
 		end)
 	end
@@ -149,7 +149,7 @@ do
 			tp:Teleport(7991339063)
 		end
 	end)
-	
+
 end
 
 --Main Script Is Here,Upper Is Just A Gui To Make Player Can Setting Mode And Something For Auto Farm Mode
@@ -162,7 +162,7 @@ local All_Items_Name = {
 print('Thanks!')
 
 game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").WalkSpeed = 25
-
+--Auto Set Speed
 game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):GetPropertyChangedSignal('WalkSpeed'):Connect(function()
 	if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed < 25  then
 		game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed = 25
@@ -199,12 +199,26 @@ end
 local CurrentMode = ''
 
 local function FireAll()
-	for i, v:Instance in pairs(workspace:GetDescendants()) do
-		if v:IsA('TouchTransmitter') then
-			firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v.Parent, 0);
-			wait();
-			firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v.Parent, 1);
+	for i, v:Instance in pairs(workspace:GetChildren()) do
+		local IsPlayer= pcall(function()
+			return v:FindFirstChildWhichIsA('Humanoid')
+		end)
+		if IsPlayer == false and v:IsA('Model') then
+			if All_Items_Name[v.Name] ~= nil then
+				firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v:FindFirstChildWhichIsA('Part') or v:FindFirstChildWhichIsA('MeshPart') or v:FindFirstChildWhichIsA('BasePart') or v:FindFirstChildWhichIsA('TrussPart'), 0);
+				wait();
+				firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v:FindFirstChildWhichIsA('Part') or v:FindFirstChildWhichIsA('MeshPart') or v:FindFirstChildWhichIsA('BasePart') or v:FindFirstChildWhichIsA('TrussPart'), 1);
+			else
+				for Name,v in pairs(All_Items_Name) do
+					if string.match(v.Name,Name) then
+						firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v:FindFirstChildWhichIsA('Part') or v:FindFirstChildWhichIsA('MeshPart') or v:FindFirstChildWhichIsA('BasePart') or v:FindFirstChildWhichIsA('TrussPart'), 0);
+						wait();
+						firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v:FindFirstChildWhichIsA('Part') or v:FindFirstChildWhichIsA('MeshPart') or v:FindFirstChildWhichIsA('BasePart') or v:FindFirstChildWhichIsA('TrussPart'), 1);
+					end
+				end
+			end
 		end
+
 	end
 end
 
@@ -259,10 +273,10 @@ end)
 pcall(function()
 	workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
 		task.wait(0.1)
-		FireAll() --Just pop all ballons in final rounds for fun c:
+		
 	end)
-	
-	
-	
+
+
+
 end)
 
