@@ -95,6 +95,13 @@ do
 			task.wait(.5)
 		until Mode == 'Items'
 	end
+	wait()
+	game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame:GetPropertyChangedSignal('Visible'):Connect(function()
+		if game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Visible == true and game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Title.Text ~= 'loading???' and Mode == 'Farm' then
+			local tp = game:GetService('TeleportService')
+			tp:Teleport(7991339063)
+		end
+	end)
 	
 	ImageButton.MouseButton1Up:Connect(function()
 		if Mode == 'Items' then
@@ -117,7 +124,7 @@ do
 	end)
 end
 
-
+--Main Script Is Here,Upper Is Just A Gui To Make Player Can Setting Mode
 local All_Items_Name = {
 	['Block'] = true,
 	['Food'] = true,
