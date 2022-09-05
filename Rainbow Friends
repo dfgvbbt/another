@@ -104,8 +104,7 @@ do
 				repeat
 					game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = workspace.testblock.CFrame
 					task.wait(.5)
-					until Mode == 'Items'
-				end
+				until Mode == 'Items'
 			end
 		end
 	end)
