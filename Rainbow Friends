@@ -221,23 +221,21 @@ local function Doing(child:Instance,ThisMode:string)
 	local AmoutLoop = 0
 	repeat
 		AmoutLoop += 1
-		local IsHave,_ = pcall(function()
+		local IsHave,__ = pcall(function()
 			for i,v in pairs (workspace:GetChildren()) do
 				if v:IsA('Model') then
 					if All_Items_Name[v.Name] ~= nil then
 						return v
 					else
-						for Name,v in pairs(All_Items_Name) do
-							if string.match(v.Name,Name) then
-								return v
-							end
+						if string.match(v.Name,ThisMode) then
+							return v
 						end
 					end
 				end
 			end
 		end)
-		if _ == nil then IsHave = fale end
-		print(IsHave)
+		if __ == nil then IsHave = fale end
+		print(IsHave,__)
 		print(child:GetFullName())
 		FireAll()
 		wait()
