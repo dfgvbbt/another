@@ -92,7 +92,7 @@ do
 			if Mode == 'Farm' and queueteleport then
 				print('Player Teleporting!')
 				queueteleport("loadstring(game:HttpGet('https://github.com/dfgvbbt/another/raw/main/Rainbow%20Friends'))()")--I learn this from auto strat tds ,discord: https://discord.gg/mmdev 
-				--^^its will execute when we join other Place/Server but not close roblox
+				--^^its will auto execute when you join other Place/Server while not close roblox app
 			end
 		end
 	end)
