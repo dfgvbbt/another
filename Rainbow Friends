@@ -123,7 +123,7 @@ do
 		
 		game.Players.LocalPlayer.PlayerGui.PermanentGUI.ChildAdded:Connect(function(child)
 			if child.Name == 'FinaleChaseMusic' then --Boss Running To You,No Ideas :(
-				
+				workspace.Monster:Destroy() --Destroy folder monster,Not make sure it will not kill you
 			elseif child.Name == 'Victory' then
 				if Mode == 'Farm' then
 					--Auto Farm,So this will teleport player to lobby
@@ -179,6 +179,7 @@ game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):GetPropert
 	end
 end)
 
+
 --Block.TouchTrigger.TouchInterest
 --workspace.GroupBuildStructures.BlockTower.Trigger.TouchInterest
 local firetouchinterest
@@ -221,8 +222,21 @@ local function Doing(child:Instance,ThisMode:string)
 	repeat
 		AmoutLoop += 1
 		local IsHave,_ = pcall(function()
-			loadstring('return workspace.'..child.Name)()
+			for i,v in pairs (workspace:GetChildren()) do
+				if v:IsA('Model') then
+					if All_Items_Name[v.Name] ~= nil then
+						return v
+					else
+						for Name,v in pairs(All_Items_Name) do
+							if string.match(v.Name,Name) then
+								return v
+							end
+						end
+					end
+				end
+			end
 		end)
+		if _ == nil then IsHave = fale end
 		print(IsHave)
 		print(child:GetFullName())
 		FireAll()
