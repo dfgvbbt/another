@@ -224,12 +224,8 @@ local function Doing(child:Instance,ThisMode:string)
 		local IsHave,__ = pcall(function()
 			for i,v in pairs (workspace:GetChildren()) do
 				if v:IsA('Model') then
-					if All_Items_Name[v.Name] ~= nil then
+					if string.match(v.Name,ThisMode) then
 						return v
-					else
-						if string.match(v.Name,ThisMode) then
-							return v
-						end
 					end
 				end
 			end
