@@ -3,7 +3,7 @@ This Script Have 2 Modes:
 {Items} pick up all items when it spawn
 {Farm} like Items and auto left game when die,auto join game when lobby :)
 
-First night might be slowing cuz have players get items before you get that
+First night might be slowing cuz have player get items
 ]]
 do
 	-- Gui to Lua
@@ -54,8 +54,8 @@ do
 	FarmImage.Name = 'FarmImage'
 	ItemsImage.Value = 'rbxassetid://4688175775'
 
-
-
+	
+	
 	--[[local function readfile(Name)
 
 	end
@@ -67,7 +67,7 @@ do
 	local function writefile(Name,Value)
 
 	end]]
-
+	
 	local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)-- or nil
 
 	local IsHaveSet,Mode = pcall(function()
@@ -86,7 +86,7 @@ do
 			writefile('dfgvbbt\\Rainbow Friends.lua','Items')
 		end
 	end
-
+	
 	game.Players.LocalPlayer.OnTeleport:Connect(function(IState)
 		if IState == Enum.TeleportState.Started then
 			if Mode == 'Farm' and queueteleport then
@@ -96,16 +96,10 @@ do
 			end
 		end
 	end)
-
-	if game.PlaceId == 7991339063 and Mode == 'Farm' then
-		repeat
-			game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = workspace.mapint.matchmaking.ring_01.neon.CFrame
-			task.wait(.5)
-		until Mode == 'Items'
-	end
-	wait()
-
-
+	
+	
+	
+	
 	ImageButton.MouseButton1Up:Connect(function()
 		if Mode == 'Items' then
 			Mode = 'Farm'
@@ -126,10 +120,10 @@ do
 		end
 	end)
 	do
-
+		
 		game.Players.LocalPlayer.PlayerGui.PermanentGUI.ChildAdded:Connect(function(child)
 			if child.Name == 'FinaleChaseMusic' then --Boss Running To You,No Ideas :(
-
+				
 			elseif child.Name == 'Victory' then
 				if Mode == 'Farm' then
 					--Auto Farm,So this will teleport player to lobby
@@ -138,10 +132,19 @@ do
 				else
 					--No Ideas :(
 				end
-
+				
 			end
 		end)
 	end
+	
+	if game.PlaceId == 7991339063 and Mode == 'Farm' then
+		repeat
+			game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = workspace.mapint.matchmaking.ring_01.neon.CFrame
+			task.wait(.5)
+		until Mode == 'Items'
+	end
+	wait()
+	
 	wait()
 	game.Players.LocalPlayer.PlayerGui.PermanentGUI:WaitForChild('DeathFrame',1000):GetPropertyChangedSignal('Visible'):Connect(function()
 		if game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Visible == true and game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Title.Text ~= 'loading???' and Mode == 'Farm' then
@@ -149,7 +152,7 @@ do
 			tp:Teleport(7991339063)
 		end
 	end)
-
+	
 end
 
 --Main Script Is Here,Upper Is Just A Gui To Make Player Can Setting Mode And Something For Auto Farm Mode
@@ -162,7 +165,7 @@ local All_Items_Name = {
 print('Thanks!')
 
 game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").WalkSpeed = 25
---Auto Set Speed
+
 game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):GetPropertyChangedSignal('WalkSpeed'):Connect(function()
 	if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed < 25  then
 		game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed = 25
@@ -199,30 +202,13 @@ end
 local CurrentMode = ''
 
 local function FireAll()
-	for i, v:Instance in pairs(workspace:GetChildren()) do
-		local IsPlayer= pcall(function()
-			return v:FindFirstChildWhichIsA('Humanoid')
-		end)
-		if IsPlayer == false and v:IsA('Model') then
-			if All_Items_Name[v.Name] ~= nil then
-				firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v:FindFirstChildWhichIsA('Part') or v:FindFirstChildWhichIsA('MeshPart') or v:FindFirstChildWhichIsA('BasePart') or v:FindFirstChildWhichIsA('TrussPart'), 0);
-				wait();
-				firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v:FindFirstChildWhichIsA('Part') or v:FindFirstChildWhichIsA('MeshPart') or v:FindFirstChildWhichIsA('BasePart') or v:FindFirstChildWhichIsA('TrussPart'), 1);
-			else
-				for Name,v in pairs(All_Items_Name) do
-					if string.match(v.Name,Name) then
-						firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v:FindFirstChildWhichIsA('Part') or v:FindFirstChildWhichIsA('MeshPart') or v:FindFirstChildWhichIsA('BasePart') or v:FindFirstChildWhichIsA('TrussPart'), 0);
-						wait();
-						firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v:FindFirstChildWhichIsA('Part') or v:FindFirstChildWhichIsA('MeshPart') or v:FindFirstChildWhichIsA('BasePart') or v:FindFirstChildWhichIsA('TrussPart'), 1);
-					end
-				end
-			end
+	for i, v:Instance in pairs(workspace:GetDescendants()) do
+		if v:IsA('TouchTransmitter') then
+			firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v.Parent, 0);
+			wait();
+			firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v.Parent, 1);
 		end
 	end
-	local l:Instance = workspace.GroupBuildStructures:FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,0)
-	wait();
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,1)
 end
 
 local function Doing(child:Instance,ThisMode:string)
@@ -255,7 +241,7 @@ end
 
 
 workspace.ChildAdded:Connect(function(child)
-	if child.Name == 'Purple_ArmIdle' then wait() return child:Destroy() end --Delete the guy inside the vent
+	if child.Name == 'Purple_ArmIdle' then wait() return child:Destroy() end
 	if child:IsA('Model') then
 		if All_Items_Name[child.Name] ~= nil then
 			Doing(child,child.Name)
@@ -276,11 +262,6 @@ end)
 pcall(function()
 	workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
 		task.wait(0.1)
-		for i,v:Instance in pairs(workspace.Map_Finale.BalloonObstacles:GetChildren())do
-			firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v:FindFirstChildWhichIsA('Part') or v:FindFirstChildWhichIsA('MeshPart') or v:FindFirstChildWhichIsA('BasePart') or v:FindFirstChildWhichIsA('TrussPart'), 0);
-			wait();
-			firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v:FindFirstChildWhichIsA('Part') or v:FindFirstChildWhichIsA('MeshPart') or v:FindFirstChildWhichIsA('BasePart') or v:FindFirstChildWhichIsA('TrussPart'), 1);
-		end
+		FireAll() --Just pop all ballons in final rounds for fun c:
 	end)
 end)
-
