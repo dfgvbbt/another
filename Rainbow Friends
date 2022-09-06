@@ -5,6 +5,20 @@ This Script Have 2 Modes:
 
 First night might be slowing cuz have players get items
 ]]
+
+local function TpToLobby()
+	local IsVipSV,IdSV = pcall(function()
+		return readfile('dfgvbbt\\RF SVV.lua')
+	end)
+	if IsVipSV and tonumber(IdSV) ~= nil then
+		local tp = game:GetService('TeleportService')
+		tp:TeleportToPrivateServer(7991339063,tonumber(IdSV),{game.Players.LocalPlayer})
+	else
+		local tp = game:GetService('TeleportService')
+		tp:Teleport(7991339063)
+	end
+end
+
 do
 	-- Gui to Lua
 
@@ -54,8 +68,8 @@ do
 	FarmImage.Name = 'FarmImage'
 	ItemsImage.Value = 'rbxassetid://4688175775'
 
-	
-	
+
+
 	--[[local function readfile(Name) Dont Care About This
 
 	end
@@ -67,7 +81,7 @@ do
 	local function writefile(Name,Value)
 
 	end]]
-	
+
 	local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)-- or nil
 
 	local IsHaveSet,Mode = pcall(function()
@@ -86,7 +100,7 @@ do
 			writefile('dfgvbbt\\Rainbow Friends.lua','Items')
 		end
 	end
-	
+
 	game.Players.LocalPlayer.OnTeleport:Connect(function(IState)
 		if IState == Enum.TeleportState.Started then
 			if Mode == 'Farm' and queueteleport then
@@ -96,10 +110,10 @@ do
 			end
 		end
 	end)
-	
-	
-	
-	
+
+
+
+
 	ImageButton.MouseButton1Up:Connect(function()
 		if Mode == 'Items' then
 			Mode = 'Farm'
@@ -120,23 +134,22 @@ do
 		end
 	end)
 	do
-		
+
 		game.Players.LocalPlayer.PlayerGui.PermanentGUI.ChildAdded:Connect(function(child)
 			if child.Name == 'FinaleChaseMusic' then --Boss Running To You,No Ideas :(
 				workspace.Monster:Destroy() --Destroy folder monster,Not make sure it will not kill you
 			elseif child.Name == 'Victory' then
 				if Mode == 'Farm' then
 					--Auto Farm,So this will teleport player to lobby
-					local tp = game:GetService('TeleportService')
-					tp:Teleport(7991339063)
+					TpToLobby()
 				else
 					--No Ideas :(
 				end
-				
+
 			end
 		end)
 	end
-	
+
 	if game.PlaceId == 7991339063 and Mode == 'Farm' then
 		repeat
 			game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = workspace.mapint.matchmaking.ring_01.count_adornee.CFrame
@@ -144,15 +157,14 @@ do
 		until Mode == 'Items'
 	end
 	wait()
-	
+
 	wait()
 	game.Players.LocalPlayer.PlayerGui.PermanentGUI:WaitForChild('DeathFrame',1000):GetPropertyChangedSignal('Visible'):Connect(function()
 		if game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Visible == true and game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Title.Text ~= 'loading???' and Mode == 'Farm' then
-			local tp = game:GetService('TeleportService')
-			tp:Teleport(7991339063)
+			TpToLobby()
 		end
 	end)
-	
+
 end
 
 --Main Script Is Here,Upper Is Just A Gui To Make Player Can Setting Mode And Something For Auto Farm Mode
@@ -174,8 +186,7 @@ end)
 
 game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):GetPropertyChangedSignal('Health'):Connect(function()
 	if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').Health < 100  then
-		local tp = game:GetService('TeleportService')
-		tp:Teleport(7991339063)
+		TpToLobby()
 	end
 end)
 
