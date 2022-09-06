@@ -104,7 +104,7 @@ do
 		if Mode == 'Items' then
 			Mode = 'Farm'
 			ModeTexts.Text = 'Auto '..Mode
-			ImageButton.Image = FarmImage.Value
+			ImageButton.Image = 'rbxassetid://4688175775'
 			writefile('dfgvbbt\\Rainbow Friends.lua','Farm')
 			if game.PlaceId == 7991339063 then
 				repeat
@@ -115,7 +115,7 @@ do
 		elseif Mode == 'Farm' then
 			Mode = 'Items'
 			ModeTexts.Text = 'Auto '..Mode
-			ImageButton.Image = ItemsImage.Value
+			ImageButton.Image = 'rbxassetid://10518145166'
 			writefile('dfgvbbt\\Rainbow Friends.lua','Items')
 		end
 	end)
