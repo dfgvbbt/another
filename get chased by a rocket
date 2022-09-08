@@ -1,0 +1,144 @@
+--[[Make Sure Execute Script Before The Game Staring :D
+This Script Have 2 Modes:
+{Items} pick up all items when it spawn
+{Farm} like Items and auto left game when die,auto join game when lobby :)
+
+First night might be slowing cuz have players get items
+]]
+
+
+
+do
+	-- Gui to Lua
+
+	local Choose = Instance.new("ScreenGui")
+	local ImageButton = Instance.new("ImageButton")
+	local ModeTexts = Instance.new("TextLabel")
+	local AutoFitMode = Instance.new("UITextSizeConstraint")
+	local ItemsImage = Instance.new('StringValue')
+	local FarmImage = Instance.new('StringValue')
+
+	--Properties:
+
+	Choose.Name = "Choose"
+	Choose.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	Choose.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	Choose.ResetOnSpawn = false
+
+	ImageButton.Parent = Choose
+	ImageButton.Active = true
+	ImageButton.AnchorPoint = Vector2.new(0.5, 1)
+	ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ImageButton.BackgroundTransparency = 1.000
+	ImageButton.Position = UDim2.new(0.5, 0, 1, 0)
+	ImageButton.Size = UDim2.new(0.1, 0, 0.0483936593, 0)
+	ImageButton.Image = "rbxassetid://10518145166"
+
+	ModeTexts.Name = "ModeTexts"
+	ModeTexts.Parent = ImageButton
+	ModeTexts.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ModeTexts.BackgroundTransparency = 1.000
+	ModeTexts.Size = UDim2.new(0, 108, 0, 24)
+	ModeTexts.Font = Enum.Font.SourceSans
+	ModeTexts.Text = "Auto Items"
+	ModeTexts.TextColor3 = Color3.fromRGB(0, 0, 0)
+	ModeTexts.TextScaled = true
+	ModeTexts.TextSize = 14.000
+	ModeTexts.TextWrapped = true
+	ModeTexts.Active = false
+
+	AutoFitMode.Name = "AutoFitMode"
+	AutoFitMode.Parent = ModeTexts
+	AutoFitMode.MaxTextSize = 14
+
+	ItemsImage.Name = 'ItemsImage'
+	ItemsImage.Value = 'rbxassetid://10518145166'
+
+	FarmImage.Name = 'FarmImage'
+	ItemsImage.Value = 'rbxassetid://4688175775'
+
+
+
+	--[[local function readfile(Name) Dont Care About This
+
+	end
+
+	local function makefolder(Name)
+
+	end
+
+	local function writefile(Name,Value)
+
+	end]]
+
+
+	local IsHaveSet,Mode = false,nil
+	print(Mode)
+	if IsHaveSet == false then
+		Mode = 'None'
+		ModeTexts.Text = 'Auto '..Mode
+	else
+		if Mode == 'None' or Mode == 'Farm' then
+			ModeTexts.Text = 'Auto '..Mode
+		else
+			Mode = 'None'
+		end
+	end
+
+
+
+
+
+	ImageButton.MouseButton1Up:Connect(function()
+		if Mode == 'None' then
+			Mode = 'Farm'
+			ModeTexts.Text = 'Auto '..Mode
+			ImageButton.Image = 'rbxassetid://4688175775'
+			pcall(function()
+				game.Players.LocalPlayer.PlayerScripts.MaxRockets:Destroy()
+				game.Players.LocalPlayer.PlayerScripts.ButtonCooldown:Destroy()
+			end)
+			repeat
+				local function fireproximityprompt(Obj:ProximityPrompt, Amount)
+					if Obj.ClassName == "ProximityPrompt" then 
+						Amount = Amount or 1
+						local PromptTime = Obj.HoldDuration
+						local RLOS = Obj.RequiresLineOfSight
+						Obj.HoldDuration = 0
+						Obj.RequiresLineOfSight = false
+						game.CoreGui.PurchasePrompt.Enabled = false --Just Dont Want Have Sales
+						for i = 1, Amount do 
+							game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart',1000).CFrame = Obj.Parent.CFrame
+							Obj.Enabled = true
+							Obj:InputHoldBegin()
+							Obj:InputHoldEnd()
+							task.wait(0.00001)
+						end
+						Obj.HoldDuration = PromptTime
+						Obj.RequiresLineOfSight = RLOS
+						game.CoreGui.PurchasePrompt.Enabled = true
+	
+					else 
+						error("userdata<ProximityPrompt> expected")
+					end
+				end
+			
+				for i,v:Instance in pairs(workspace.Buttons.RocketButton1:GetDescendants()) do
+					if v:IsA('ProximityPrompt') then
+						fireproximityprompt(v,999)
+					end
+				end
+				task.wait(0.1)
+			until Mode == 'None'
+
+
+		elseif Mode == 'Farm' then
+			Mode = 'None'
+			ModeTexts.Text = 'Auto '..Mode
+			ImageButton.Image = 'rbxassetid://10518145166'
+
+		end
+	end)
+
+end
+
