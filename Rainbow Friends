@@ -244,10 +244,10 @@ local function Doing(child:Instance,ThisMode:string)
 		if __ == nil then IsHave = fale end
 		print(IsHave,__)
 		print(child:GetFullName())
+		if __ == nil  or CurrentMode == '' then print('break!') break end
 		FireAll()
 		wait()
 		if AmoutLoop >= 20 then AmoutLoop = 0 break end
-		if __ == nil  or CurrentMode == '' then print('break!') break end
 		print('Not yet :(')
 	until IsHave == false
 	print('Yet!')
