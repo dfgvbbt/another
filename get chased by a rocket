@@ -1,13 +1,3 @@
---[[Make Sure Execute Script Before The Game Staring :D
-This Script Have 2 Modes:
-{Items} pick up all items when it spawn
-{Farm} like Items and auto left game when die,auto join game when lobby :)
-
-First night might be slowing cuz have players get items
-]]
-
-
-
 do
 	-- Gui to Lua
 
