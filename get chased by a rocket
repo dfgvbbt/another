@@ -112,7 +112,7 @@ do
 							Obj.Enabled = true
 							Obj:InputHoldBegin()
 							Obj:InputHoldEnd()
-							task.wait(0.00001)
+							task.wait(0.01)
 						end
 						Obj.HoldDuration = PromptTime
 						Obj.RequiresLineOfSight = RLOS
