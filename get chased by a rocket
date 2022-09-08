@@ -100,6 +100,7 @@ do
 						for i = 1, Amount do 
 							if Mode == 'None' then break end
 							game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart',1000).CFrame = Obj.Parent.CFrame
+							game.Players.LocalPlayer.Character:WaitForChild('Head',1000).CFrame = Obj.Parent.CFrame
 							Obj.Enabled = true
 							Obj:InputHoldBegin()
 							Obj:InputHoldEnd()
