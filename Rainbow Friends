@@ -8,7 +8,7 @@ First night might be slowing cuz have players get items
 
 local function TpToLobby()
 	local IsVipSV,IdSV = pcall(function()
-		return readfile('dfgvbbt\\RF SVV.lua')
+		return readfile('dfgvbbt\\RF SVV.lua') --Broken,dont create file name like that
 	end)
 	if IsVipSV and tonumber(IdSV) ~= nil then
 		local tp = game:GetService('TeleportService')
@@ -137,7 +137,7 @@ do
 
 		game.Players.LocalPlayer.PlayerGui.PermanentGUI.ChildAdded:Connect(function(child)
 			if child.Name == 'FinaleChaseMusic' then --Boss Running To You,No Ideas :(
-				workspace.Monster:Destroy() --Destroy folder monster,Not make sure it will not kill you
+				workspace.Monsters:Destroy() --Destroy folder monster,Not make sure it will not kill you
 			elseif child.Name == 'Victory' then
 				if Mode == 'Farm' then
 					--Auto Farm,So this will teleport player to lobby
