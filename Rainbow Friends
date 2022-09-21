@@ -5,7 +5,7 @@ This Script Have 2 Modes:
 
 First night might be slowing cuz have players get items
 ]]
-
+local _M
 local function TpToLobby()
 	local IsVipSV,IdSV = pcall(function()
 		return readfile('dfgvbbt\\RF SVV.lua') --Broken,dont create file name like that
@@ -166,20 +166,8 @@ do
 		end
 	end)
 
+	_M = Mode
 	
-	pcall(function()
-		workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
-			task.wait(0.1)
-			FireAll() --Just pop all ballons in final rounds for fun c:
-			if Mode == 'Farm' then
-				local A_1 = "Teleporting...,Have nice days!"
-				local A_2 = "All"
-				local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
-				Event:FireServer(A_1, A_2)
-				TpToLobby()
-			end
-		end)
-	end)
 end
 
 --Main Script Is Here,Upper Is Just A Gui To Make Player Can Setting Mode And Something For Auto Farm Mode
@@ -329,7 +317,19 @@ workspace.ChildAdded:Connect(function(child)
 end)
 
 
-
+pcall(function()
+		workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
+			task.wait(0.1)
+			FireAll() --Just pop all ballons in final rounds for fun c:
+			if _M == 'Farm' then
+				local A_1 = "Teleporting...,Have nice days!"
+				local A_2 = "All"
+				local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+				Event:FireServer(A_1, A_2)
+				TpToLobby()
+			end
+		end)
+	end)
 
 
 
