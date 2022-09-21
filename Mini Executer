@@ -693,4 +693,6 @@ spawn(function()
 	CreateNewChoose(Character,'Anti Fling','https://github.com/dfgvbbt/another/raw/main/Not%20My%20Script/Roblox/Exploit/Fe%20Anti%20Fling','Idk And I Not Test :3',Change)
 	CreateNewChoose(Character,'Tall(R15)','https://github.com/dfgvbbt/another/raw/main/Not%20My%20Script/Roblox/Exploit/Tall%20Script','Very Good >:D',Change)
 	CreateNewChoose(Character,'Walk On Wall(Z)','https://pastebin.com/raw/zXk4Rq2r','Rejoin To Destroy It :)',Change)
+	CreateNewChoose(Another,'ng chat bypass','https://github.com/dfgvbbt/another/raw/main/Not%20My%20Script/Roblox/Exploit/ng%20chat%20bypass','ummmm, ye...',Change)
+	
 end)
