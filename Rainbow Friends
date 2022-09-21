@@ -249,7 +249,7 @@ local function Doing(child:Instance,ThisMode:string)
 				if v:IsA('Model') then
 					if string.match(v.Name,ThisMode) then
 						for i, v1:Instance in pairs(v:GetDescendants()) do
-							if v:1IsA('TouchTransmitter') then
+							if v1:IsA('TouchTransmitter') then
 								firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v1.Parent, 0);
 								wait();
 								firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'), v1.Parent, 1);
