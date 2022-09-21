@@ -318,18 +318,18 @@ end)
 
 
 pcall(function()
-		workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
-			task.wait(0.1)
-			FireAll() --Just pop all ballons in final rounds for fun c:
-			if _M == 'Farm' then
-				local A_1 = "Teleporting...,Have nice days!"
-				local A_2 = "All"
-				local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
-				Event:FireServer(A_1, A_2)
-				TpToLobby()
-			end
-		end)
+	workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
+		task.wait(0.1)
+		FireAll() --Just pop all ballons in final rounds for fun c:
+		if _M == 'Farm' then
+			local A_1 = "Teleporting...,Have nice days!"
+			local A_2 = "All"
+			local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+			Event:FireServer(A_1, A_2)
+			TpToLobby()
+		end
 	end)
+end)
 
 
 
