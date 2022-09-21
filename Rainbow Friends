@@ -159,12 +159,27 @@ do
 	wait()
 
 	wait()
+	
 	game.Players.LocalPlayer.PlayerGui.PermanentGUI:WaitForChild('DeathFrame',1000):GetPropertyChangedSignal('Visible'):Connect(function()
 		if game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Visible == true and game.Players.LocalPlayer.PlayerGui.PermanentGUI.DeathFrame.Title.Text ~= 'loading???' and Mode == 'Farm' then
 			TpToLobby()
 		end
 	end)
 
+	
+	pcall(function()
+		workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
+			task.wait(0.1)
+			FireAll() --Just pop all ballons in final rounds for fun c:
+			if Mode == 'Farm' then
+				local A_1 = "Teleporting...,Have nice days!"
+				local A_2 = "All"
+				local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+				Event:FireServer(A_1, A_2)
+				TpToLobby()
+			end
+		end)
+	end)
 end
 
 --Main Script Is Here,Upper Is Just A Gui To Make Player Can Setting Mode And Something For Auto Farm Mode
@@ -284,6 +299,13 @@ local function Doing(child:Instance,ThisMode:string)
 	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,0)
 	wait();
 	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,1)
+	
+	wait(0.1)
+	
+	local l:Instance = workspace.GroupBuildStructures:FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
+	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,0)
+	wait();
+	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,1)
 end
 
 
@@ -306,18 +328,13 @@ workspace.ChildAdded:Connect(function(child)
 	end
 end)
 
-pcall(function()
-	workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
-		task.wait(0.1)
-		FireAll() --Just pop all ballons in final rounds for fun c:
-	end)
-end)
 
 
 
 
 
-local A_1 = "Cheat loadded,auto putting items..."
+
+local A_1 = "Loadded,auto putting items..."
 local A_2 = "All"
 local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
 Event:FireServer(A_1, A_2)
