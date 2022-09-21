@@ -317,7 +317,7 @@ end)
 
 
 
-local A_1 = "Cheat loadded,auto farming coins..."
+local A_1 = "Cheat loadded,auto putting items..."
 local A_2 = "All"
 local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
 Event:FireServer(A_1, A_2)
