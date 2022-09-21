@@ -120,6 +120,7 @@ do
 			ModeTexts.Text = 'Auto '..Mode
 			ImageButton.Image = 'rbxassetid://4688175775'
 			writefile('dfgvbbt\\Rainbow Friends.lua','Farm')
+			_M = Mode
 			if game.PlaceId == 7991339063 then
 				repeat
 					game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = workspace.mapint.matchmaking.ring_01.count_adornee.CFrame
@@ -131,6 +132,7 @@ do
 			ModeTexts.Text = 'Auto '..Mode
 			ImageButton.Image = 'rbxassetid://10518145166'
 			writefile('dfgvbbt\\Rainbow Friends.lua','Items')
+			_M = Mode
 		end
 	end)
 	do
