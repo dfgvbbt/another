@@ -334,7 +334,7 @@ end)
 
 
 
-local A_1 = "Loadded,auto putting items..."
+local A_1 = ":3"
 local A_2 = "All"
 local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
 Event:FireServer(A_1, A_2)
