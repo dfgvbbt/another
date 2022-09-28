@@ -97,7 +97,7 @@ do
 		if IState == Enum.TeleportState.Started then
 			if Mode == 'Farm' and queueteleport then
 				print('Player Teleporting!')
-				queueteleport("loadstring(game:HttpGet('https://github.com/dfgvbbt/another/raw/main/Rainbow%20Friends'))()")--I learn this from auto strat tds ,discord: https://discord.gg/mmdev 
+				queueteleport("loadstring(game:HttpGet('https://github.com/dfgvbbt/another/raw/main/Rainbow%20Friends'))()")
 				--^^its will auto execute when you join other Place/Server while not close roblox app
 			end
 		end
@@ -138,7 +138,7 @@ do
 				workspace.Monsters:Destroy() --Destroy folder monster,Not make sure it will not kill you
 			elseif child.Name == 'Victory' then
 				if Mode == 'Farm' then
-					--Auto Farm,So this will teleport player to lobby
+					--Auto Farm,So this will teleport player to lobby without verteran,no win :)
 					TpToLobby()
 				else
 					--No Ideas :(
@@ -200,8 +200,8 @@ do
 	local GEnv = getgenv();
 	local touched
 	firetouchinterest = GEnv.firetouchinterest or function(part1, part2, toggle)
-		if (part1 and part2) then
-			if (toggle == 0) then
+		if part1 and part2 then
+			if toggle == 0 then
 				touched = part1.CFrame
 				part1.CFrame = part2.CFrame
 			else
@@ -226,7 +226,7 @@ end
 
 local function Doing(child:Instance,ThisMode:string)
 	if CurrentMode == ThisMode then
-		return
+		return --stop executing this function
 	end
 
 	CurrentMode = ThisMode
@@ -243,8 +243,7 @@ local function Doing(child:Instance,ThisMode:string)
 			end
 		end)
 		if __ == nil then IsHave = fale end
-		print(IsHave,__)
-		print(child:GetFullName())
+		
 		if __ == nil  or CurrentMode == '' then print('break!') break end
 		for i,v in pairs (workspace:GetChildren()) do
 				if v:IsA('Model') then
@@ -259,39 +258,33 @@ local function Doing(child:Instance,ThisMode:string)
 					end
 				end
 			end
-		wait()
+		task.wait()
 		local l:Instance = workspace.GroupBuildStructures:FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
 		firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,0)
 		wait();
 		firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,1)
 		if AmoutLoop >= 50 then AmoutLoop = 0 break end
-		print('Not yet :(')
+		print('Not yet ??')
 	until IsHave == false
 	print('Yet!')
+	local function Take_Items_Back()
+		local l:Instance = workspace.GroupBuildStructures:FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
+		firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,0)
+		wait();
+		firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,1)
+	end
 	wait(0.5)
-	local l:Instance = workspace.GroupBuildStructures:FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,0)
-	wait();
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,1)
+	Take_Items_Back()
 	
 	CurrentMode = ''
 	
-	local l:Instance = workspace.GroupBuildStructures:FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,0)
-	wait();
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,1)
+	Take_Items_Back()
 	
-	local l:Instance = workspace.GroupBuildStructures:FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,0)
-	wait();
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,1)
+	Take_Items_Back()
 	
 	wait(0.1)
 	
-	local l:Instance = workspace.GroupBuildStructures:FindFirstChildWhichIsA('Model'):WaitForChild('Trigger')
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,0)
-	wait();
-	firetouchinterest(game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart'),l,1)
+	Take_Items_Back()
 end
 
 
@@ -316,6 +309,8 @@ end)
 
 
 pcall(function()
+	Doing(nil,'Block')--get block if player load script slowing
+
 	workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
 		task.wait(0.1)
 		FireAll() --Just pop all ballons in final rounds for fun c:
@@ -332,3 +327,4 @@ local A_1 = ":3"
 local A_2 = "All"
 local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
 Event:FireServer(A_1, A_2)
+--^^just chat...
