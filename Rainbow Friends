@@ -74,7 +74,7 @@ do
 
 	end]]
 
-	local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport)-- or nil
+	local queueteleport = (syn and syn.queue_on_teleport) or queue_on_teleport or (fluxus and fluxus.queue_on_teleport) or false
 
 	local IsHaveSet,Mode = pcall(function()
 		return readfile('dfgvbbt\\Rainbow Friends.lua')
@@ -116,8 +116,12 @@ do
 			if game.PlaceId == 7991339063 then
 				repeat
 					game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = workspace.mapint.matchmaking.ring_01.count_adornee.CFrame
-					task.wait(.5)
+					task.wait(1.5)
 				until Mode == 'Items'
+			elseif game.PlaceId == 7991339063 then
+				if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').Health < 100 then
+					TpToLobby()
+				end
 			end
 		elseif Mode == 'Farm' then
 			Mode = 'Items'
@@ -176,13 +180,13 @@ print('Thanks!')
 game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid").WalkSpeed = 25
 
 game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):GetPropertyChangedSignal('WalkSpeed'):Connect(function()
-	if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed < 25  then
+	if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed < 25  then --Auto set speed
 		game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').WalkSpeed = 25
 	end
 end)
 
 game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid'):GetPropertyChangedSignal('Health'):Connect(function()
-	if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').Health < 100  then
+	if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').Health < 100 and _M == 'Farm'  then
 		TpToLobby()
 	end
 end)
@@ -316,11 +320,6 @@ pcall(function()
 		task.wait(0.1)
 		FireAll() --Just pop all ballons in final rounds for fun c:
 		if _M == 'Farm' then
-			_M = '0'
-			local A_1 = "Teleporting...,Have nice days!"
-			local A_2 = "All"
-			local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
-			Event:FireServer(A_1, A_2)
 			TpToLobby()
 		end
 	end)
