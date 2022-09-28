@@ -116,7 +116,7 @@ do
 			if game.PlaceId == 7991339063 then
 				repeat
 					game.Players.LocalPlayer.Character:WaitForChild('HumanoidRootPart').CFrame = workspace.mapint.matchmaking.ring_01.count_adornee.CFrame
-					task.wait(1.5)
+					wait(1.5)
 				until Mode == 'Items'
 			elseif game.PlaceId == 7991339063 then
 				if game.Players.LocalPlayer.Character:FindFirstChildWhichIsA('Humanoid').Health < 100 then
