@@ -7,16 +7,8 @@ First night might be slowing
 ]]
 local _M
 local function TpToLobby()
-	local IsVipSV,IdSV = pcall(function()
-		return readfile('dfgvbbt\\RF SVV.lua') --Broken,dont create file name like that
-	end)
-	if IsVipSV and tonumber(IdSV) ~= nil then
-		local tp = game:GetService('TeleportService')
-		tp:TeleportToPrivateServer(7991339063,tonumber(IdSV),{game.Players.LocalPlayer})
-	else
-		local tp = game:GetService('TeleportService')
-		tp:Teleport(7991339063)
-	end
+	local tp = game:GetService('TeleportService')
+	tp:Teleport(7991339063)
 end
 
 do
