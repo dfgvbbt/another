@@ -317,7 +317,6 @@ end)
 
 
 pcall(function()
-	Doing(nil,'Block')--get block if player load script slowing
 
 	workspace.Map_Finale.BalloonObstacles:FindFirstChildWhichIsA('MeshPart').ChildAdded:Connect(function(child)
 		task.wait(0.1)
