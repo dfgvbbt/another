@@ -230,6 +230,14 @@ local function Doing(child:Instance,ThisMode:string)
 	end
 
 	CurrentMode = ThisMode
+	pcall(function()
+		local A_1 = "Auto Collecting "..CurrentMode
+		local A_2 = "All"
+		local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest
+		Event:FireServer(A_1, A_2)
+	end)
+	
+	
 	local AmoutLoop = 0
 	repeat
 		AmoutLoop += 1
