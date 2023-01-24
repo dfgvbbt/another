@@ -46,7 +46,7 @@ if MyTycoon == nil then
 	    if v.ClassName == 'Folder' and v.Properties.Owner.Value == nil then 
 	    	local HRP = game.Players.LocalPlayer.Character.HumanoidRootPart
             	firetouchinterest(HRP,v.tycoonThings.tycoonDoor.tycoonDoorDecor,0)
-		wait(.05)
+		wait(2)
 		firetouchinterest(HRP,v.tycoonThings.tycoonDoor.tycoonDoorDecor,1)
             	MyTycoon = v
             	wait(1)
