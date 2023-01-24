@@ -67,6 +67,9 @@ local function CollectMoney()
     firetouchinterest(HRP,MyTycoon.tycoonThings.CollectorParts.cashCollector.CollectCash,1)
 end
 
+
+local CurrentCash = tonumber(game.Players.LocalPlayer.leaderstats.Cash.Value)
+
 while wait(10) do
     CollectMoney()
     wait()
@@ -88,15 +91,16 @@ while wait(10) do
             --GamePass/Product
             continue
         end
+        CurrentCash = tonumber(game.Players.LocalPlayer.leaderstats.Cash.Value)
 
-        local CurrentCash = tonumber(game.Players.LocalPlayer.leaderstats.Cash.Value)
-        wait()
         if CurrentCash >= Price then
             print('Buying '..v.Name..' ('..Price..'/'..CurrentCash..')')
             local HRP = game.Players.LocalPlayer.Character.HumanoidRootPart
             firetouchinterest(HRP,Head,0)
             wait(.05)
             firetouchinterest(HRP,Head,1)
+            wait(1.5)
+            CurrentCash = tonumber(game.Players.LocalPlayer.leaderstats.Cash.Value)
         else
             print('No money')
         end
