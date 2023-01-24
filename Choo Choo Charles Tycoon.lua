@@ -94,7 +94,7 @@ while wait(10) do
         local CurrentCash = tonumber(game.Players.LocalPlayer.leaderstats.Cash.Value)
         wait()
         if CurrentCash >= Price then
-            print('Buying '..v.Name)
+            print('Buying '..v.Name..' ('..Price..'/'..CurrentCash..')')
             local HRP = game.Players.LocalPlayer.Character.HumanoidRootPart
             firetouchinterest(HRP,Head,0)
             wait(.05)
