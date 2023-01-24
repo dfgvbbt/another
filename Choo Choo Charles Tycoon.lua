@@ -45,12 +45,10 @@ if MyTycoon == nil then
     for i,v in pairs(game.Workspace.Tycoon:GetChildren()) do
 	    if v.ClassName == 'Folder' and v.Properties.Owner.Value == nil then 
 	    	local HRP = game.Players.LocalPlayer.Character.HumanoidRootPart
-            	firetouchinterest(HRP,v.tycoonThings.tycoonDoor.tycoonDoorDecor,0)
-		wait(2)
-		firetouchinterest(HRP,v.tycoonThings.tycoonDoor.tycoonDoorDecor,1)
-            	MyTycoon = v
-            	wait(1)
-            	break
+            HRP.CFrame = v.tycoonThings.tycoonDoor.tycoonDoorDecor.CFrame
+            MyTycoon = v
+            wait(1)
+            break
 	    end
     end
 end
