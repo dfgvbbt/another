@@ -20,24 +20,6 @@ for i,v in pairs(game.Workspace.Tycoon:GetChildren()) do
 	end
 end
 
-if MyTycoon == nil then
-    --Get a tycoon when dont have
-    for i,v in pairs(game.Workspace.Tycoon:GetChildren()) do
-	    if v.ClassName == 'Folder' and v.Properties.Owner.Value == nil then 
-	    	local HRP = game.Players.LocalPlayer.Character.HumanoidRootPart
-            HRP.CFrame = v.tycoonThings.tycoonDoor.tycoonDoorDecor.CFrame
-            MyTycoon = v
-            wait(1)
-            break
-	    end
-    end
-end
-
-local function StartWith (String,StartWith)
-    local match = string.match(String, "^"..StartWith)
-    return (match ~= nil)
-end
-
 local firetouchinterest
 
 do
@@ -55,6 +37,29 @@ do
 		end
 	end
 end
+
+
+
+if MyTycoon == nil then
+    --Get a tycoon when dont have
+    for i,v in pairs(game.Workspace.Tycoon:GetChildren()) do
+	    if v.ClassName == 'Folder' and v.Properties.Owner.Value == nil then 
+	    	local HRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+            	firetouchinterest(HRP,v.tycoonThings.tycoonDoor.tycoonDoorDecor,0)
+		wait(.05)
+		firetouchinterest(HRP,v.tycoonThings.tycoonDoor.tycoonDoorDecor,1)
+            	MyTycoon = v
+            	wait(1)
+            	break
+	    end
+    end
+end
+
+local function StartWith (String,StartWith)
+    local match = string.match(String, "^"..StartWith)
+    return (match ~= nil)
+end
+
 
 
 local function CollectMoney()
