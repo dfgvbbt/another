@@ -99,7 +99,7 @@ while wait(10) do
             firetouchinterest(HRP,Head,0)
             wait(.05)
             firetouchinterest(HRP,Head,1)
-            wait(1.5)
+            wait(.75)
             CurrentCash = tonumber(game.Players.LocalPlayer.leaderstats.Cash.Value)
         else
             print('No money')
