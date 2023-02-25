@@ -1,0 +1,18 @@
+local IsFiring = false
+
+game.Workspace.CurrentAtoms.ChildAdded:Connect(function(Child)
+	if Child.ClassName == 'Part' then
+		if IsFiring == true then
+            repeat wait() until IsFiring == false
+        end
+        IsFiring = true
+        local HRP = game.Players.LocalPlayer.Character.HumanoidRootPart
+		local LastCFrame = HRP.CFrame
+        HRP.CFrame = Child.CFrame
+        wait()
+        HRP.CFrame = LastCFrame
+        IsFiring = false
+    else
+        print(Child.Name)
+	end
+end)
