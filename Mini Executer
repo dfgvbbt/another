@@ -613,7 +613,7 @@ UIS.InputBegan:Connect(function(input,process)
 end)
 --KeyCode
 game:GetService("UserInputService").InputBegan:Connect(function(input,gameprocess)
-	if gameprocess then return end
+	--if gameprocess then return end
 	if (UIS:IsKeyDown(Enum.KeyCode.LeftControl) and input.KeyCode == Enum.KeyCode.E) then
 		if Small.Transparency == 0 then
 			HideGui()
